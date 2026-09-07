@@ -3,24 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GEEK ARSENAL 设备档案：现役计算节点、笔电与移动终端规格、家庭千兆拓扑，以及 2006–2026 装机编年史。">
+  <meta name="theme-color" content="#0b0d13">
   <title>GEEK ARSENAL · 设备档案</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0d13'/%3E%3Crect x='9' y='9' width='14' height='14' rx='3' fill='none' stroke='%237dd3fc' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-      colors: {
-        ink: '#0b0d13', panel: '#12151d', panel2: '#171b25', line: '#232a38',
-        sky: '#7dd3fc', violet: '#c4b5fd', green: '#86efac',
-        amber: '#fbbf24', rose: '#fda4af'
-      }
+    // CDN 被墙或离线时 tailwind 未定义，直接赋值会抛 ReferenceError。
+    if (typeof tailwind !== 'undefined') {
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: '#0b0d13', panel: '#12151d', panel2: '#171b25', line: '#232a38',
+              sky: '#7dd3fc', violet: '#c4b5fd', green: '#86efac',
+              amber: '#fbbf24', rose: '#fda4af'
+            }
+          }
         }
-      }
+      };
     }
   </script>
   <style>
     :root { color-scheme: dark; }
+    html { scroll-behavior: smooth; }
     body {
       background:
         radial-gradient(1100px 480px at 85% -12%, rgba(125,211,252,.05), transparent 60%),
@@ -35,6 +44,20 @@
     .scrollbar::-webkit-scrollbar-thumb:hover { background: #38445c; }
     .card { transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease; }
     .card:hover { transform: translateY(-2px); border-color: #33405a; box-shadow: 0 18px 44px -14px rgba(0,0,0,.55); }
+    :where(button, input, summary, a):focus-visible {
+      outline: 2px solid #7dd3fc;
+      outline-offset: 3px;
+    }
+    .skip-link {
+      position: fixed; top: 10px; left: 10px; z-index: 100;
+      transform: translateY(-150%); padding: 8px 12px; border-radius: 8px;
+      background: #f8fafc; color: #0b0d13; font-size: 13px; font-weight: 600;
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .spec-details summary { list-style: none; }
+    .spec-details summary::-webkit-details-marker { display: none; }
+    .spec-details .chevron { transition: transform .2s ease; }
+    .spec-details[open] .chevron { transform: rotate(180deg); }
     .tab-rail {
       display: flex;
       width: 100%;
@@ -212,14 +235,16 @@
     .topo-port {
       position: absolute; top: 50%; width: 12px; height: 12px; margin-top: -6px;
       border-radius: 99px; background: #0b0d13; border: 2px solid #7dd3fc;
-      box-shadow: 0 0 0 3px rgba(11,13,19,.75); cursor: crosshair; z-index: 3;
+      box-shadow: 0 0 0 3px rgba(11,13,19,.75); cursor: crosshair; z-index: 3; padding: 0;
     }
+    .topo-port::before { content: ''; position: absolute; inset: -12px; border-radius: 999px; }
     .topo-node.sz4 .topo-port { width: 9px; height: 9px; margin-top: -4.5px; }
     .topo-port.in { left: -7px; border-color: #86efac; }
     .topo-port.out { right: -7px; border-color: #7dd3fc; }
     .topo-port:hover, .topo-port.is-src { transform: scale(1.25); background: #7dd3fc; }
     .topo-port.in:hover, .topo-port.in.is-hit { background: #86efac; }
     .topo-draft { stroke: #fda4af; stroke-width: 2; fill: none; stroke-dasharray: 5 4; pointer-events: none; }
+    .topo-mobile-list { display: none; }
     .toast {
       position: fixed; bottom: 5.5rem; left: 50%; transform: translateX(-50%);
       background: #1a1f2b; border: 1px solid #2b3343; color: #86efac;
@@ -229,31 +254,50 @@
     }
     .toast.show { opacity: 1; }
     @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
       .card { transition: none; }
       .card:hover { transform: none; }
       .tab-slot { transition: none; }
     }
+    @media (max-width: 767px) {
+      .card:hover { transform: none; }
+      .topo-stage { display: none; }
+      .topo-mobile-list { display: grid; }
+    }
   </style>
 </head>
 <body class="text-slate-200 min-h-screen scrollbar pb-28 md:pb-16">
+  <a href="#mainContent" class="skip-link">跳到主要内容</a>
+
+  <!-- 全部内容由 JS 渲染，禁用脚本时给出明确说明。
+       注意：Tailwind CDN 本身就是 JS 运行时编译，禁用脚本后工具类不会生效，
+       因此这里只能用内联样式。 -->
+  <noscript>
+    <div style="margin:16px;padding:16px 18px;border:1px solid #232a38;border-radius:12px;background:#12151d;color:#e2e8f0;font-family:system-ui,sans-serif;line-height:1.6">
+      <strong style="color:#7dd3fc">需要启用 JavaScript</strong>
+      <p style="margin:8px 0 0">本页的设备档案、拓扑图与编年史均由脚本渲染，请启用 JavaScript 后重新加载。</p>
+    </div>
+  </noscript>
 
   <header class="sticky top-0 z-50 border-b border-line/80 bg-ink/85 backdrop-blur-xl">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="flex flex-col lg:flex-row gap-3 lg:items-center lg:justify-between py-3.5">
         <div class="flex items-center gap-3 min-w-0">
           <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-sky to-violet text-ink grid place-items-center shrink-0 shadow-lg shadow-sky/10">
-            <i class="fa-solid fa-microchip text-[15px]"></i>
+            <i class="fa-solid fa-microchip text-[15px]" aria-hidden="true"></i>
           </div>
           <div class="min-w-0">
             <div class="flex items-center gap-2.5">
               <h1 class="text-[15px] font-semibold tracking-wide text-white">GEEK ARSENAL</h1>
-              <span class="mono text-[10px] px-1.5 py-0.5 rounded-md bg-sky/10 text-sky border border-sky/20">v2026.8</span>
+              <span class="mono text-[10px] px-1.5 py-0.5 rounded-md bg-sky/10 text-sky border border-sky/20">v2026.9</span>
             </div>
             <p class="text-[11px] text-slate-500 truncate mt-0.5">设备档案 · 全生命周期谱系 · 拓扑矩阵 · 2006–2026 编年史</p>
           </div>
         </div>
         <div class="relative w-full lg:w-96">
-          <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs pointer-events-none"></i>
+          <label for="searchInput" class="sr-only">搜索设备档案</label>
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs pointer-events-none" aria-hidden="true"></i>
           <input id="searchInput" type="search" placeholder="搜索芯片 / 型号 / 历史设备…" autocomplete="off"
                  class="w-full bg-panel2/70 border border-line rounded-xl pl-9 pr-14 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-sky/50 focus:ring-2 focus:ring-sky/10 transition-all">
           <kbd class="absolute right-3 top-1/2 -translate-y-1/2 hidden sm:block text-[10px] text-slate-500 border border-line rounded-md px-1.5 py-0.5 mono bg-panel2">/</kbd>
@@ -263,58 +307,25 @@
     <div id="tabNav" class="max-w-7xl mx-auto px-4 sm:px-6 pb-3 hidden md:block"></div>
   </header>
 
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-      <article class="bg-panel border border-line rounded-xl p-4 hover:border-slate-700 transition-colors relative overflow-hidden">
-        <span class="absolute left-0 top-0 bottom-0 w-0.5 bg-sky/50"></span>
-        <div class="flex items-center justify-between">
-          <div class="text-[11px] text-slate-500">现役计算核心</div>
-          <span class="w-7 h-7 rounded-lg bg-sky/10 text-sky grid place-items-center text-xs"><i class="fa-solid fa-microchip"></i></span>
-        </div>
-        <div class="mono text-2xl font-bold text-white mt-2.5">46 <span class="text-xs font-normal text-slate-500">Cores</span></div>
-      </article>
-      <article class="bg-panel border border-line rounded-xl p-4 hover:border-slate-700 transition-colors relative overflow-hidden">
-        <span class="absolute left-0 top-0 bottom-0 w-0.5 bg-green/50"></span>
-        <div class="flex items-center justify-between">
-          <div class="text-[11px] text-slate-500">在线 / 近线存储</div>
-          <span class="w-7 h-7 rounded-lg bg-green/10 text-green grid place-items-center text-xs"><i class="fa-solid fa-database"></i></span>
-        </div>
-        <div class="mono text-2xl font-bold text-white mt-2.5">43.2 <span class="text-xs font-normal text-slate-500">TB</span></div>
-      </article>
-      <article class="bg-panel border border-line rounded-xl p-4 hover:border-slate-700 transition-colors relative overflow-hidden">
-        <span class="absolute left-0 top-0 bottom-0 w-0.5 bg-violet/50"></span>
-        <div class="flex items-center justify-between">
-          <div class="text-[11px] text-slate-500">现役独显显存</div>
-          <span class="w-7 h-7 rounded-lg bg-violet/10 text-violet grid place-items-center text-xs"><i class="fa-solid fa-memory"></i></span>
-        </div>
-        <div class="mono text-2xl font-bold text-white mt-2.5">32 <span class="text-xs font-normal text-slate-500">GB</span></div>
-      </article>
-      <article class="bg-panel border border-line rounded-xl p-4 hover:border-slate-700 transition-colors relative overflow-hidden">
-        <span class="absolute left-0 top-0 bottom-0 w-0.5 bg-amber/50"></span>
-        <div class="flex items-center justify-between">
-          <div class="text-[11px] text-slate-500">装机跨度</div>
-          <span class="w-7 h-7 rounded-lg bg-amber/10 text-amber grid place-items-center text-xs"><i class="fa-solid fa-clock-rotate-left"></i></span>
-        </div>
-        <div class="mono text-2xl font-bold text-white mt-2.5">20 <span class="text-xs font-normal text-slate-500">Years</span></div>
-      </article>
-    </div>
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-6" aria-label="总览指标">
+    <div id="kpiGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-3"></div>
   </section>
 
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 pt-4">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 pt-4" aria-label="设备状态筛选">
     <div id="statusWrap" class="flex flex-wrap items-center gap-2">
       <div id="statusFilters" class="flex flex-wrap gap-1.5"></div>
-      <span id="resultMeta" class="ml-auto text-[11px] text-slate-500 mono"></span>
+      <span id="resultMeta" class="ml-auto text-[11px] text-slate-500 mono" role="status" aria-live="polite" aria-atomic="true"></span>
     </div>
   </nav>
 
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-5">
+  <main id="mainContent" class="max-w-7xl mx-auto px-4 sm:px-6 py-5" tabindex="-1">
     <div id="cardGrid"></div>
     <div id="specialPanel" class="hidden"></div>
-    <div id="emptyState" class="hidden text-center py-20 text-slate-600 text-sm">没有匹配的设备</div>
+    <div id="emptyState" class="hidden text-center py-20 text-slate-500 text-sm">没有匹配的设备</div>
   </main>
 
-  <nav id="mobileNav" class="md:hidden fixed bottom-0 inset-x-0 z-50 border-t border-line bg-ink/95 backdrop-blur-xl"></nav>
-  <div id="toast" class="toast mono">已复制</div>
+  <nav id="mobileNav" class="md:hidden fixed bottom-0 inset-x-0 z-50 border-t border-line bg-ink/95 backdrop-blur-xl" aria-label="主要分区"></nav>
+  <div id="toast" class="toast mono" role="status" aria-live="polite" aria-atomic="true">已复制</div>
 
   <footer class="max-w-7xl mx-auto px-4 sm:px-6 pt-6 pb-6 text-[11px] text-slate-600 mono border-t border-line/70">
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
@@ -453,6 +464,21 @@ const DEVICES = [
       ['机身', '1.27kg 镁铝混合 CNC · 16.5×294×222mm · 50Wh 四电芯 · 双 Thunderbolt™ 4 40Gbps + USB-A + HDMI + microSD · Bang & Olufsen 四扬声器 · 指纹 · MrChromebox Full ROM 刷入 Windows 11 Pro（Coolstar 声卡 / 雷电驱动满血）']
     ],
     footL: '顶级做工的 Windows 旗舰便携平替'
+  },
+  {
+    tab: 'laptops', status: 'active', accent: 'cyan',
+    badge: 'MOBILE-04 // 商务旗舰魔改本 · 同款二号机', flag: '990元入手',
+    title: 'HP Elite Dragonfly 13.5 inch Chromebook (256GB 原盘)',
+    sub: '990 元入手的同款第二台，固态为出厂原版 256GB，与 MOBILE-01 双机镜像互备',
+    tags: 'hp dragonfly chromebook 1245u win11 笔记本 256g 原版 990元 同款双机 驱动完美 3:2 镁合金 coolstar vpro 现役',
+    specs: [
+      ['CPU', 'Intel® Core™ i5-1245U Processor (Alder Lake-U, 10C/12T: 2P@1.2–4.4GHz + 8E, 12MB L3, 15W, Intel vPro®)'],
+      ['RAM/ROM', '16GB LPDDR4x-4266 双通道 + 原厂 256GB NVMe（出厂未换盘，与一号机 512G 致态的唯一差异）'],
+      ['屏幕', '13.5" 3:2 QHD+ IPS 触控 (2256×1504 / 400nits / 100% sRGB / 康宁大猩猩 5)'],
+      ['显卡', 'Intel® Iris® Xe Graphics G7 80EU'],
+      ['机身', '1.27kg 镁铝混合 CNC · 16.5×294×222mm · 50Wh 四电芯 · 双 Thunderbolt™ 4 40Gbps + USB-A + HDMI + microSD · Bang & Olufsen 四扬声器 · 指纹 · MrChromebox Full ROM 刷入 Windows 11 Pro（Coolstar 声卡 / 雷电驱动满血）']
+    ],
+    footL: '990 元入手 · 256G 原盘 · 与 MOBILE-01 互为热备'
   },
   {
     tab: 'laptops', status: 'active', accent: 'amber',
@@ -1304,6 +1330,7 @@ const HISTORY = [
       '日常 AI 二奶机：Intel® Core™ i5-13400TEF（解锁功耗全核 3.9GHz，官方最高睿频 4.50GHz）+ ASUS B660M-K D4 + 台电 32GB DDR4 3200 + 影驰 RTX 2060 12GB 双风扇 + Kingston SNV3S1000G 1TB + RBUSNS8180S3512GJ 512G + 铭瑄 X5 480G + WD5000AAKX-001CA0 500G + 航嘉 750W 铜牌电源。柜子上另有一块 WD5000AAKX。',
       '边缘服务中枢：中柏 N100 双网口迷你主机，32GB DDR4 2666 单条 + Toshiba THNSN5128GPU7 128G NVMe + 梵想 S100 Pro 500GB，现运行飞牛OS (fnOS)，常驻 QQ 机器人 (ASTRBOT/NAPCAT) 与 AdGuard Home 广告过滤。',
       '移动端重大换代：以 799 元出掉 DELL Latitude 7410 2-in-1；以 950 元购入 攀升 暴风龙 S2 (Ryzen 5 5600U + 16G + 512G + 2K屏, 1.3kg)，仅补 151 元实现 CPU 算力翻倍；购入 Acer Chromebook Spin 13 (i7-8650U + 16GB LPDDR3 1866 + 3:2 2K QHD 触控屏 + Wacom) 刷好 Win10 作为独立阅读与办公副机。',
+      '同款双机成型：以 990 元再入一台同款 HP Elite Dragonfly 13.5 (i5-1245U + 16GB + 原厂 256GB)，与主力 MOBILE-01 组成完全一致的同款双机配置，互为备份与轮换。',
       '手机换代：升级为 OPPO Find X9 5G (16+512)，原主力 nubia Z60S Pro (16+512) 转入备用摄影收藏。'
     ]},
   { color: 'violet', period: '[Period 7] 2025.08 - 2026.03 (X99 洋垃圾工作站探索与 4070S 质变)', tag: 'X99 E5 V3/V4 → 4070S',
@@ -1352,29 +1379,89 @@ const COLOR = {
   slate: { dot: 'bg-slate-500', text: 'text-slate-300' }
 };
 
-const state = { tab: localStorage.getItem('ga.tab') || 'rigs', status: 'all', q: '' };
-
-function esc(s) {
-  return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+// localStorage 在 Safari 隐私模式 / 部分 file:// 环境下会直接抛异常，
+// 这里统一兜底，避免启动脚本中断导致整页空白。
+function safeGet(key) {
+  try { return localStorage.getItem(key); } catch { return null; }
 }
+function safeSet(key, value) {
+  try { localStorage.setItem(key, value); return true; } catch { return false; }
+}
+function safeRemove(key) {
+  try { localStorage.removeItem(key); return true; } catch { return false; }
+}
+
+// 单一配置来源。硬件合计无法从自由文本规格里可靠解析，因此显式声明；
+// 装机跨度由 HISTORY 的年份自动推导，改数据时不需要手动同步。
+// 颜色写完整类名，避免拼接类名在未来接入构建流程时被 purge 掉。
+const KPI = [
+  { label: '现役计算核心', value: '56', unit: 'Cores', icon: 'fa-microchip', bar: 'bg-sky/50', chip: 'bg-sky/10 text-sky' },
+  { label: '在线 / 近线存储', value: '43.2', unit: 'TB', icon: 'fa-database', bar: 'bg-green/50', chip: 'bg-green/10 text-green' },
+  { label: '现役独显显存', value: '32', unit: 'GB', icon: 'fa-memory', bar: 'bg-violet/50', chip: 'bg-violet/10 text-violet' },
+  { label: '装机跨度', value: () => spanYears(), unit: 'Years', icon: 'fa-clock-rotate-left', bar: 'bg-amber/50', chip: 'bg-amber/10 text-amber' }
+];
+
+function spanYears() {
+  const years = [];
+  HISTORY.forEach(h => {
+    const text = `${h.period || ''} ${h.title || ''}`;
+    (text.match(/(19|20)\d{2}/g) || []).forEach(y => years.push(+y));
+  });
+  if (!years.length) return '—';
+  // 注意：不要用 hi 作为局部名，会遮蔽全局的高亮函数 hi()。
+  const lo = Math.min(...years);
+  const latest = Math.max(Math.max(...years), new Date().getFullYear());
+  return String(latest - lo);
+}
+
+function renderKPI() {
+  const host = document.getElementById('kpiGrid');
+  if (!host) return;
+  host.innerHTML = KPI.map(k => {
+    const value = typeof k.value === 'function' ? k.value() : k.value;
+    return `<article class="bg-panel border border-line rounded-xl p-4 hover:border-slate-700 transition-colors relative overflow-hidden">
+      <span class="absolute left-0 top-0 bottom-0 w-0.5 ${k.bar}"></span>
+      <div class="flex items-center justify-between gap-2">
+        <div class="text-[11px] text-slate-400">${esc(k.label)}</div>
+        <span class="w-7 h-7 rounded-lg ${k.chip} grid place-items-center text-xs shrink-0"><i class="fa-solid ${esc(k.icon)}" aria-hidden="true"></i></span>
+      </div>
+      <div class="mono text-2xl font-bold text-white mt-2.5">${esc(value)} <span class="text-xs font-normal text-slate-500">${esc(k.unit)}</span></div>
+    </article>`;
+  }).join('');
+}
+
+const state = { tab: safeGet('ga.tab') || 'rigs', status: 'all', q: '' };
+
+const ESC_MAP = {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'};
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ESC_MAP[c]);
+}
+let hiQuery = null, hiRe = null;
 function hi(s) {
   const t = esc(s);
   if (!state.q) return t;
-  const q = state.q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  return t.replace(new RegExp(q, 'ig'), m => `<mark class="hit">${m}</mark>`);
+  if (hiQuery !== state.q) {
+    hiQuery = state.q;
+    hiRe = new RegExp(state.q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'ig');
+  }
+  hiRe.lastIndex = 0;
+  return t.replace(hiRe, m => `<mark class="hit">${m}</mark>`);
 }
 function specText(v) { return Array.isArray(v) ? v.join(' ') : v; }
+const BAG_CACHE = new WeakMap();
 function bag(d) {
-  return [d.title, d.sub, d.badge, d.flag, d.tags, d.footL, d.footR, ...(d.specs||[]).map(([k,v]) => k + ' ' + specText(v))].join(' ').toLowerCase();
+  let cached = BAG_CACHE.get(d);
+  if (cached === undefined) {
+    cached = [d.title, d.sub, d.badge, d.flag, d.tags, d.footL, d.footR, ...(d.specs||[]).map(([k,v]) => k + ' ' + specText(v))].join(' ').toLowerCase();
+    BAG_CACHE.set(d, cached);
+  }
+  return cached;
 }
 function matchDevice(d) {
   if (state.status !== 'all' && d.status !== state.status) return false;
   return !state.q || bag(d).includes(state.q);
 }
-function tabStatuses(tab) {
-  const set = new Set(DEVICES.filter(d => d.tab === tab).map(d => d.status));
-  return STATUS_ORDER.filter(s => set.has(s));
-}
+function matchesQuery(d) { return !state.q || bag(d).includes(state.q); }
 function toast(msg) {
   const el = document.getElementById('toast');
   el.textContent = msg;
@@ -1382,10 +1469,33 @@ function toast(msg) {
   clearTimeout(toast._t);
   toast._t = setTimeout(() => el.classList.remove('show'), 1400);
 }
-function persist() {
-  localStorage.setItem('ga.tab', state.tab);
-  const q = state.q ? ('?q=' + encodeURIComponent(state.q)) : '';
-  history.replaceState(null, '', '#' + state.tab + q);
+function hashFor(tab, q) {
+  return '#' + tab + (q ? '?q=' + encodeURIComponent(q) : '');
+}
+function parseHash() {
+  let raw = '';
+  try { raw = decodeURIComponent(location.hash.replace(/^#/, '')); }
+  catch { raw = location.hash.replace(/^#/, ''); }
+  const [tabPart, queryPart] = raw.split('?');
+  const tab = TABS.some(t => t.id === tabPart) ? tabPart : null;
+  let q = '';
+  if (queryPart) {
+    try { q = (new URLSearchParams(queryPart).get('q') || '').trim().toLowerCase(); }
+    catch { q = ''; }
+  }
+  return { tab, q };
+}
+// push=true 时写入新的历史记录，让分区切换可以用浏览器前进/后退撤销；
+// 搜索输入走 replace，避免每次改词都堆一条历史。
+function persist(push) {
+  safeSet('ga.tab', state.tab);
+  const url = hashFor(state.tab, state.q);
+  try {
+    if (push) history.pushState(null, '', url);
+    else history.replaceState(null, '', url);
+  } catch {
+    // 某些 file:// 或受限环境下 History API 不可用，URL 同步失败不影响页面功能。
+  }
 }
 
 function renderNav() {
@@ -1394,7 +1504,7 @@ function renderNav() {
     return `<button type="button" data-tab="${t.id}" title="${esc(t.label)}" aria-label="${esc(t.label)}" aria-current="${on ? 'page' : 'false'}"
       class="tab-slot ${compact ? 'compact' : ''} ${on ? 'tab-active' : ''}">
       <span class="tab-idx">${t.idx}</span>
-      <i class="fa-solid ${t.icon} tab-ico"></i>
+      <i class="fa-solid ${t.icon} tab-ico" aria-hidden="true"></i>
       <span class="tab-name">${compact ? t.short : t.name}</span>
     </button>`;
   };
@@ -1403,22 +1513,23 @@ function renderNav() {
   document.querySelectorAll('.tab-slot').forEach(btn => btn.onclick = () => setTab(btn.dataset.tab));
 
   const tabObj = TABS.find(t => t.id === state.tab);
-  const available = (state.q ? STATUS_ORDER.filter(s => DEVICES.some(d => d.status === s && matchDevice({...d, status: d.status}) && bag(d).includes(state.q))) : tabStatuses(state.tab));
-  const show = !tabObj.special && available.length > 1;
+  const filterScope = DEVICES.filter(d => state.q ? matchesQuery(d) : d.tab === state.tab);
+  const presentStatuses = new Set(filterScope.map(d => d.status));
+  const available = STATUS_ORDER.filter(s => presentStatuses.has(s));
+  const show = available.length > 1 && (state.q || !tabObj.special);
   const wrap = document.getElementById('statusWrap');
-  if (!show && !state.q) {
+  if (!show) {
     document.getElementById('statusFilters').innerHTML = '';
-    wrap.classList.toggle('hidden', !state.q);
+    wrap.classList.toggle('hidden', !state.q && !!tabObj.special);
+    if (state.status !== 'all' && !available.includes(state.status)) state.status = 'all';
   } else if (show) {
     wrap.classList.remove('hidden');
     const chips = [['all','全部'], ...available.map(id => [id, STATUS[id].label])];
     if (state.status !== 'all' && !available.includes(state.status)) state.status = 'all';
     document.getElementById('statusFilters').innerHTML = chips.map(([id, lab]) => {
-      const n = id === 'all'
-        ? DEVICES.filter(d => (state.q ? true : d.tab === state.tab) && (state.q ? bag(d).includes(state.q) : true)).length
-        : DEVICES.filter(d => d.status === id && (state.q || d.tab === state.tab) && (!state.q || bag(d).includes(state.q))).length;
+      const n = id === 'all' ? filterScope.length : filterScope.filter(d => d.status === id).length;
       const on = state.status === id;
-      return `<button data-st="${id}" class="px-2.5 py-1 rounded-full text-[11px] border transition-colors ${on ? 'bg-white/10 text-white border-slate-600' : 'bg-transparent text-slate-500 border-line hover:text-slate-300 hover:border-slate-600'}">${lab}${n ? ' ' + n : ''}</button>`;
+      return `<button type="button" data-st="${id}" aria-pressed="${on}" class="px-3 py-1.5 rounded-full text-xs border transition-colors ${on ? 'bg-white/10 text-white border-slate-500' : 'bg-transparent text-slate-400 border-line hover:text-slate-200 hover:border-slate-500'}">${lab}${n ? ' ' + n : ''}</button>`;
     }).join('');
     document.getElementById('statusFilters').querySelectorAll('button').forEach(b => {
       b.onclick = () => { state.status = b.dataset.st; persist(); render(); };
@@ -1446,26 +1557,35 @@ function deviceSpecs(d) {
 
 function cardHTML(d) {
   const st = STATUS[d.status] || STATUS.vault;
-  const faded = (d.status === 'sold' || d.status === 'dead') ? 'opacity-75' : '';
   const ac = ACCENT[d.accent || (d.status === 'dead' ? 'rose' : d.status === 'sold' ? 'amber' : 'slate')];
-  const specs = deviceSpecs(d).map(([k,v]) =>
+  const allSpecs = deviceSpecs(d);
+  const primaryCount = allSpecs.length > 4 ? 3 : allSpecs.length;
+  const specRows = rows => rows.map(([k,v]) =>
     `<div class="py-2.5 border-b border-line/70 last:border-0">
-      <div class="text-[10px] uppercase tracking-wider text-slate-600 mb-1">${esc(k)}</div>
-      <div class="text-[12.5px] leading-relaxed text-slate-300">${renderSpec(v)}</div>
+      <div class="text-[11px] uppercase tracking-wider text-slate-500 mb-1">${esc(k)}</div>
+      <div class="text-[13px] leading-relaxed text-slate-200">${renderSpec(v)}</div>
     </div>`).join('');
-  return `<article class="card ${faded} ${ac.bar} accent-line bg-panel border border-line rounded-2xl p-5 flex flex-col">
+  const primary = specRows(allSpecs.slice(0, primaryCount));
+  const extra = allSpecs.slice(primaryCount);
+  const more = extra.length ? `<details class="spec-details border-t border-line/70">
+      <summary class="flex items-center justify-between gap-3 py-2.5 text-xs font-medium text-slate-400 hover:text-sky cursor-pointer">
+        <span>完整规格 · 另 ${extra.length} 项</span><i class="fa-solid fa-chevron-down chevron text-[10px]" aria-hidden="true"></i>
+      </summary>
+      <div class="border-t border-line/70">${specRows(extra)}</div>
+    </details>` : '';
+  return `<article class="card ${ac.bar} accent-line bg-panel border border-line rounded-2xl p-4 sm:p-5 flex flex-col">
     <div class="flex items-start justify-between gap-2 mb-3">
       <span class="mono text-[10px] font-semibold px-2 py-1 rounded-md bg-panel2 text-slate-400 border border-line">${hi(d.badge || '')}</span>
       <span class="mono text-[10px] px-2 py-1 rounded-md border ${st.cls} whitespace-nowrap">${esc(d.flag || st.label)}</span>
     </div>
-    <button class="copy-title text-left text-[15px] font-semibold text-slate-100 leading-snug hover:text-sky transition-colors" data-copy="${esc(d.title)}">${hi(d.title)}</button>
-    ${d.sub ? `<p class="text-xs text-slate-500 mt-1.5 leading-relaxed">${hi(d.sub)}</p>` : ''}
-    <div class="mt-4 grow text-[12px] bg-slate-950/60 border border-line rounded-xl px-4 py-2 font-mono text-slate-300">${specs}</div>
-    ${(d.footL || d.footR) ? `<div class="mt-4 pt-3 text-[11px] mono text-slate-600 flex justify-between gap-3 border-t border-line/70"><span>${hi(d.footL || '')}</span><span>${hi(d.footR || '')}</span></div>` : ''}
+    <button type="button" class="copy-title text-left text-base font-semibold text-slate-100 leading-snug hover:text-sky transition-colors" data-copy="${esc(d.title)}" aria-label="复制设备名称：${esc(d.title)}" title="点击复制设备名称">${hi(d.title)}</button>
+    ${d.sub ? `<p class="text-[13px] text-slate-400 mt-1.5 leading-relaxed">${hi(d.sub)}</p>` : ''}
+    <div class="mt-4 grow bg-slate-950/60 border border-line rounded-xl px-3.5 py-1 font-mono">${primary}${more}</div>
+    ${(d.footL || d.footR) ? `<div class="mt-4 pt-3 text-xs mono text-slate-500 flex flex-wrap justify-between gap-2 border-t border-line/70"><span>${hi(d.footL || '')}</span><span>${hi(d.footR || '')}</span></div>` : ''}
   </article>`;
 }
 
-const TOPO_KEY = 'ga.topo.v3';
+const TOPO_KEY = 'ga.topo.v4';
 const TOPO_SEED = {
   nodes: [
     { id: 'wan',  x: .015, y: .12, sz: 1,            accent: 'slate',  title: '互联网',           sub: 'WAN 入口',            note: '光猫 / 公网上行' },
@@ -1477,9 +1597,10 @@ const TOPO_SEED = {
     { id: 'rig1', x: .45,  y: .36, sz: 3, gig: true, accent: 'violet', title: '主力机',           sub: '5700X + 4070S',      note: '2K/4K 电竞与渲染' },
     { id: 'rig2', x: .45,  y: .54, sz: 3, gig: true, accent: 'violet', title: '日常机',           sub: '13400TEF + 2060',    note: 'Ollama 8B · ComfyUI' },
     { id: 'rep',  x: .45,  y: .76, sz: 3,            accent: 'sky',    title: '360 T7 中继',     sub: '挂 AX5400',           note: '无线中继 · 只给攀升' },
-    { id: 'dfly', x: .63,  y: .06, sz: 4,            accent: 'amber',  title: 'HP Dragonfly',     sub: 'i5-1245U',            note: 'AX5400 Wi-Fi' },
-    { id: 'spin', x: .63,  y: .24, sz: 4,            accent: 'amber',  title: 'Acer Spin 13',     sub: 'i7-8650U',            note: 'AX5400 Wi-Fi' },
-    { id: 'ezpad',x: .63,  y: .42, sz: 4,            accent: 'amber',  title: 'EZpad 8',          sub: 'N3350 平板',          note: 'AX5400 Wi-Fi' },
+    { id: 'dfly', x: .63,  y: .06, sz: 4,            accent: 'amber',  title: 'HP Dragonfly',     sub: 'i5-1245U · 512G',    note: 'AX5400 Wi-Fi' },
+    { id: 'dfly2',x: .63,  y: .24, sz: 4,            accent: 'amber',  title: 'HP Dragonfly 2',   sub: 'i5-1245U · 256G',    note: 'AX5400 Wi-Fi' },
+    { id: 'spin', x: .63,  y: .42, sz: 4,            accent: 'amber',  title: 'Acer Spin 13',     sub: 'i7-8650U',            note: 'AX5400 Wi-Fi' },
+    { id: 'ezpad',x: .63,  y: .58, sz: 4,            accent: 'amber',  title: 'EZpad 8',          sub: 'N3350 平板',          note: 'AX5400 Wi-Fi' },
     { id: 's2',   x: .63,  y: .76, sz: 4,            accent: 'amber',  title: '攀升 暴风龙 S2',   sub: '5600U',               note: '只走 T7 中继' },
     { id: 'x9',   x: .78,  y: .00, sz: 4,            accent: 'rose',   title: 'Find X9',          sub: '日常主力',            note: 'AX5400 Wi-Fi' },
     { id: 'r8',   x: .78,  y: .13, sz: 4,            accent: 'rose',   title: 'AQUOS R8 Pro',     sub: 'IMX989',              note: 'AX5400 Wi-Fi' },
@@ -1498,6 +1619,7 @@ const TOPO_SEED = {
     { a: 'sw8',  b: 'rig1',  kind: 'lan' },
     { a: 'sw8',  b: 'rig2',  kind: 'lan' },
     { a: 'ax',   b: 'dfly',  kind: 'wifi' },
+    { a: 'ax',   b: 'dfly2', kind: 'wifi' },
     { a: 'ax',   b: 'spin',  kind: 'wifi' },
     { a: 'ax',   b: 'ezpad', kind: 'wifi' },
     { a: 'ax',   b: 'x9',    kind: 'wifi' },
@@ -1516,18 +1638,19 @@ function topologyHTML() {
   return `<div class="space-y-4">
     <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
       <div>
-        <h3 class="text-base font-semibold text-white font-mono"><i class="fa-solid fa-diagram-project text-sky mr-2"></i>家庭局域网拓扑</h3>
-        <p class="text-[11px] text-slate-500 font-mono mt-1.5">T7 OpenWrt 做主 · 8 口交换机下联台式 · AX5400 供手机笔电 · T7 中继只给攀升 · 拖节点 / 拉线 / 点线删除</p>
+        <h3 class="text-base font-semibold text-white font-mono"><i class="fa-solid fa-diagram-project text-sky mr-2" aria-hidden="true"></i>家庭局域网拓扑</h3>
+        <p class="text-xs text-slate-400 font-mono mt-1.5">T7 OpenWrt 做主 · 8 口交换机下联台式 · AX5400 供手机笔电 · T7 中继只给攀升 <span class="hidden md:inline">· 拖节点 / 拉线 / 点线删除</span></p>
       </div>
       <div class="flex flex-wrap items-center gap-2 text-[10px] mono text-slate-500">
         <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md border border-green/30 bg-green/10 text-green tracking-widest">全屋千兆</span>
-        <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-minus text-amber"></i>上行</span>
-        <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-minus text-sky"></i>有线 1G</span>
-        <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-minus text-violet"></i>无线</span>
-        <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-minus text-rose"></i>手拉</span>
+        <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-minus text-amber" aria-hidden="true"></i>上行</span>
+        <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-minus text-sky" aria-hidden="true"></i>有线 1G</span>
+        <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-minus text-violet" aria-hidden="true"></i>无线</span>
+        <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-minus text-rose" aria-hidden="true"></i>手拉</span>
         <button type="button" id="topoReset" class="ml-1 px-2.5 py-1 rounded-lg border border-line bg-panel2 text-slate-300 hover:text-white hover:border-slate-500">重置布局</button>
       </div>
     </div>
+    <div id="topoMobileList" class="topo-mobile-list gap-2" aria-label="网络连接关系"></div>
     <div id="topoStage" class="topo-stage scrollbar">
       <div id="topoCanvas" class="topo-canvas">
         <div class="topo-mark">全屋千兆 · 1GbE</div>
@@ -1543,6 +1666,7 @@ function bindTopology() {
   const canvas = document.getElementById('topoCanvas');
   const svg = document.getElementById('topoWires');
   const box = document.getElementById('topoNodes');
+  const mobileList = document.getElementById('topoMobileList');
   const reset = document.getElementById('topoReset');
   if (!stage || !canvas || !svg || !box) return;
 
@@ -1552,7 +1676,7 @@ function bindTopology() {
   });
   let model;
   try {
-    const raw = JSON.parse(localStorage.getItem(TOPO_KEY) || 'null');
+    const raw = JSON.parse(safeGet(TOPO_KEY) || 'null');
     model = seed();
     if (raw && Array.isArray(raw.nodes) && Array.isArray(raw.links)) {
       raw.nodes.forEach(p => {
@@ -1565,46 +1689,97 @@ function bindTopology() {
     }
   } catch { model = seed(); }
 
-  const save = () => localStorage.setItem(TOPO_KEY, JSON.stringify({
+  const save = () => safeSet(TOPO_KEY, JSON.stringify({
     nodes: model.nodes.map(n => ({ id: n.id, x: n.x, y: n.y })),
     links: model.links
   }));
 
-  const nodeEl = id => box.querySelector(`.topo-node[data-id="${id}"]`);
-  const portEl = (id, side) => nodeEl(id)?.querySelector(`.topo-port.${side}`);
+  let portCache = null;
+  const portEl = (id, side) => {
+    if (!portCache) {
+      portCache = new Map();
+      box.querySelectorAll('.topo-node').forEach(el => {
+        portCache.set(el.dataset.id + ':in', el.querySelector('.topo-port.in'));
+        portCache.set(el.dataset.id + ':out', el.querySelector('.topo-port.out'));
+      });
+    }
+    return portCache.get(id + ':' + side) || null;
+  };
 
-  function xy(el) {
-    const cr = canvas.getBoundingClientRect();
+  function xy(el, cr) {
+    const base = cr || canvas.getBoundingClientRect();
     const r = el.getBoundingClientRect();
-    return { x: r.left + r.width / 2 - cr.left, y: r.top + r.height / 2 - cr.top };
+    return { x: r.left + r.width / 2 - base.left, y: r.top + r.height / 2 - base.top };
   }
   function curve(p1, p2) {
     const dx = Math.max(48, Math.abs(p2.x - p1.x) * 0.42);
     return `M ${p1.x.toFixed(1)} ${p1.y.toFixed(1)} C ${(p1.x + dx).toFixed(1)} ${p1.y.toFixed(1)}, ${(p2.x - dx).toFixed(1)} ${p2.y.toFixed(1)}, ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`;
   }
 
-  function draw() {
+  const LINK_KINDS = { wan: '上行', lan: '有线 1G', wifi: '无线', data: '数据', idle: '待机', user: '自定义' };
+  const NAMES = new Map(model.nodes.map(n => [n.id, n.title]));
+  const nameOf = id => NAMES.get(id) || id;
+
+  function drawWires() {
     const w = canvas.offsetWidth;
     const h = canvas.offsetHeight;
+    // 小屏下画布是 display:none，此时所有 rect 都是 0，算出来的连线毫无意义。
+    // 直接跳过，省掉每次重绘约 40 次无效的布局读取。
+    if (!w || !h) return;
     svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
     svg.setAttribute('width', w);
     svg.setAttribute('height', h);
     const draft = svg.querySelector('.topo-draft');
+    const cr = canvas.getBoundingClientRect();
     svg.innerHTML = model.links.map((l, i) => {
       const a = portEl(l.a, 'out'), b = portEl(l.b, 'in');
       if (!a || !b) return '';
-      return `<path data-i="${i}" class="kind-${esc(l.kind || 'user')}" d="${curve(xy(a), xy(b))}" stroke-width="2"/>`;
+      const name = `${nameOf(l.a)} 到 ${nameOf(l.b)}`;
+      return `<path data-i="${i}" class="kind-${esc(l.kind || 'user')}" d="${curve(xy(a, cr), xy(b, cr))}" stroke-width="2"><title>${esc(name)} · 点击拆线</title></path>`;
     }).join('');
     if (draft) svg.appendChild(draft);
-    svg.querySelectorAll('path[data-i]').forEach(p => {
-      p.onclick = ev => {
-        ev.stopPropagation();
-        const i = +p.dataset.i;
-        model.links.splice(i, 1);
-        save();
-        draw();
-        toast('已拆线');
-      };
+  }
+
+  function drawList() {
+    if (!mobileList) return;
+    mobileList.innerHTML = model.links.map((l, i) => `<div class="flex items-center gap-3 rounded-xl border border-line bg-panel px-3.5 py-3">
+      <span class="w-2 h-2 rounded-full shrink-0 ${l.kind === 'wifi' ? 'bg-violet' : l.kind === 'wan' ? 'bg-amber' : l.kind === 'user' ? 'bg-rose' : 'bg-sky'}"></span>
+      <span class="text-sm text-slate-200 min-w-0 grow"><strong class="font-medium">${esc(nameOf(l.a))}</strong><i class="fa-solid fa-arrow-right mx-2 text-[10px] text-slate-500" aria-hidden="true"></i><strong class="font-medium">${esc(nameOf(l.b))}</strong></span>
+      <span class="text-[11px] mono text-slate-400 shrink-0">${esc(LINK_KINDS[l.kind] || '连接')}</span>
+      <button type="button" data-cut="${i}" class="shrink-0 w-8 h-8 -mr-1 rounded-lg text-slate-500 hover:text-rose" aria-label="拆除 ${esc(nameOf(l.a))} 到 ${esc(nameOf(l.b))} 的连接"><i class="fa-solid fa-link-slash text-xs" aria-hidden="true"></i></button>
+    </div>`).join('');
+  }
+
+  function draw() {
+    drawWires();
+    drawList();
+  }
+
+  let rafId = null;
+  function drawSoon() {
+    if (rafId !== null) return;
+    rafId = requestAnimationFrame(() => { rafId = null; drawWires(); });
+  }
+
+  function cutLink(i) {
+    if (!Number.isInteger(i) || i < 0 || i >= model.links.length) return;
+    model.links.splice(i, 1);
+    save();
+    draw();
+    toast('已拆线');
+  }
+
+  svg.addEventListener('click', ev => {
+    const path = ev.target.closest('path[data-i]');
+    if (!path) return;
+    ev.stopPropagation();
+    cutLink(+path.dataset.i);
+  });
+
+  if (mobileList) {
+    mobileList.addEventListener('click', ev => {
+      const btn = ev.target.closest('button[data-cut]');
+      if (btn) cutLink(+btn.dataset.cut);
     });
   }
 
@@ -1617,11 +1792,11 @@ function bindTopology() {
         <div class="tn-sub">${esc(n.sub)}</div>
       </div>
       <p class="tn-note">${esc(n.note)}</p>
-      <span class="topo-port in" data-side="in"></span>
-      <span class="topo-port out" data-side="out"></span>
+      <button type="button" class="topo-port in" data-side="in" aria-label="${esc(n.title)} 输入端口"></button>
+      <button type="button" class="topo-port out" data-side="out" aria-label="${esc(n.title)} 输出端口"></button>
     </article>`).join('');
 
-  let drag = null, wire = null;
+  let drag = null, wire = null, keyWireFrom = null;
 
   box.querySelectorAll('.topo-node').forEach(el => {
     const hd = el.querySelector('.tn-hd');
@@ -1638,7 +1813,7 @@ function bindTopology() {
   });
 
   box.querySelectorAll('.topo-port').forEach(port => {
-    port.addEventListener('mousedown', ev => {
+    const startWire = ev => {
       ev.preventDefault();
       ev.stopPropagation();
       const node = port.closest('.topo-node').dataset.id;
@@ -1650,6 +1825,26 @@ function bindTopology() {
       d.setAttribute('class', 'topo-draft');
       svg.appendChild(d);
       wire.el = d;
+    };
+    port.addEventListener('mousedown', startWire);
+    port.addEventListener('touchstart', startWire, { passive: false });
+    port.addEventListener('keydown', ev => {
+      if (ev.key !== 'Enter' && ev.key !== ' ') return;
+      ev.preventDefault();
+      const node = port.closest('.topo-node').dataset.id;
+      if (port.dataset.side === 'out') {
+        keyWireFrom = node;
+        box.querySelectorAll('.topo-port.is-src').forEach(p => p.classList.remove('is-src'));
+        port.classList.add('is-src');
+        toast('已选择连线起点，请选择输入端口');
+      } else if (keyWireFrom && keyWireFrom !== node && !model.links.some(l => l.a === keyWireFrom && l.b === node)) {
+        model.links.push({ a: keyWireFrom, b: node, kind: 'user' });
+        keyWireFrom = null;
+        box.querySelectorAll('.topo-port.is-src').forEach(p => p.classList.remove('is-src'));
+        save();
+        draw();
+        toast('已连线');
+      }
     });
   });
 
@@ -1665,7 +1860,7 @@ function bindTopology() {
       drag.n.y = Math.min(maxY, Math.max(0, drag.oy + (pt.clientY - drag.sy) / ch));
       drag.el.style.left = (drag.n.x * 100).toFixed(2) + '%';
       drag.el.style.top = (drag.n.y * 100).toFixed(2) + '%';
-      draw();
+      drawSoon();
     }
     if (wire) {
       const cr = canvas.getBoundingClientRect();
@@ -1699,7 +1894,7 @@ function bindTopology() {
   window.addEventListener('touchmove', move, { passive: false });
   window.addEventListener('mouseup', up);
   window.addEventListener('touchend', up);
-  const onResize = () => draw();
+  const onResize = () => drawSoon();
   window.addEventListener('resize', onResize);
   bindTopology._off = () => {
     window.removeEventListener('mousemove', move);
@@ -1707,10 +1902,11 @@ function bindTopology() {
     window.removeEventListener('mouseup', up);
     window.removeEventListener('touchend', up);
     window.removeEventListener('resize', onResize);
+    if (rafId !== null) { cancelAnimationFrame(rafId); rafId = null; }
   };
 
   reset.onclick = () => {
-    localStorage.removeItem(TOPO_KEY);
+    safeRemove(TOPO_KEY);
     if (bindTopology._off) bindTopology._off();
     bindTopology();
     toast('已重置');
@@ -1737,12 +1933,18 @@ function historyHTML() {
   </div>`;
 }
 
+function scrollTop() {
+  window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+}
 function setTab(id) {
+  if (!TABS.some(t => t.id === id)) return;
+  // 重复点击当前分区不写历史，但仍然回到顶部（移动端点底栏回顶的习惯）。
+  if (id === state.tab) { scrollTop(); return; }
   state.tab = id;
   state.status = 'all';
-  persist();
+  persist(true);
   render();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  scrollTop();
 }
 
 function render() {
@@ -1753,7 +1955,9 @@ function render() {
   const searching = !!state.q;
   const tabObj = TABS.find(t => t.id === state.tab);
   const list = (searching ? DEVICES : DEVICES.filter(d => d.tab === state.tab)).filter(matchDevice);
-  document.getElementById('resultMeta').textContent = searching ? `跨分区 ${list.length} 条` : (tabObj && !tabObj.special ? `${list.length} 台` : '');
+  document.getElementById('resultMeta').textContent = searching
+    ? (list.length ? `跨分区 ${list.length} 条结果` : '没有匹配的设备')
+    : (tabObj && !tabObj.special ? `${list.length} 台` : '');
 
   if (searching) {
     if (bindTopology._off) bindTopology._off();
@@ -1804,33 +2008,76 @@ function render() {
 
 function bindCopy(root) {
   root.querySelectorAll('.copy-title').forEach(btn => {
-    btn.onclick = () => navigator.clipboard.writeText(btn.dataset.copy).then(() => toast('已复制'));
+    btn.onclick = async () => {
+      try {
+        if (!navigator.clipboard?.writeText) throw new Error('Clipboard API unavailable');
+        await navigator.clipboard.writeText(btn.dataset.copy);
+        toast('设备名称已复制');
+      } catch {
+        const area = document.createElement('textarea');
+        area.value = btn.dataset.copy;
+        area.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+        document.body.appendChild(area);
+        area.select();
+        const ok = document.execCommand('copy');
+        area.remove();
+        toast(ok ? '设备名称已复制' : '复制失败，请手动复制');
+      }
+    };
   });
 }
 
 const searchInput = document.getElementById('searchInput');
-searchInput.addEventListener('input', e => {
-  state.q = e.target.value.trim().toLowerCase();
+let searchTimer = null;
+function applySearch(value) {
+  clearTimeout(searchTimer);
+  searchTimer = null;
+  const next = value.trim().toLowerCase();
+  if (next === state.q) return;
+  state.q = next;
   persist();
   render();
+}
+searchInput.addEventListener('input', e => {
+  const value = e.target.value;
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => applySearch(value), 140);
 });
+searchInput.addEventListener('search', e => applySearch(e.target.value));
 document.addEventListener('keydown', e => {
   if (e.key === '/' && document.activeElement !== searchInput) { e.preventDefault(); searchInput.focus(); searchInput.select(); }
-  if (e.key === 'Escape') { searchInput.value = ''; state.q = ''; searchInput.blur(); persist(); render(); }
+  if (e.key === 'Enter' && document.activeElement === searchInput) { e.preventDefault(); applySearch(searchInput.value); }
+  if (e.key === 'Escape') { searchInput.value = ''; searchInput.blur(); applySearch(''); }
   if (document.activeElement === searchInput) return;
   const n = parseInt(e.key, 10);
   if (n >= 1 && n <= 7) setTab(TABS[n - 1].id);
 });
 
-(function boot() {
-  const raw = decodeURIComponent(location.hash.replace(/^#/, ''));
-  const [tabPart, query] = raw.split('?');
-  if (TABS.some(t => t.id === tabPart)) state.tab = tabPart;
-  if (query) {
-    const q = new URLSearchParams(query).get('q');
-    if (q) { state.q = q.toLowerCase(); searchInput.value = q; }
-  }
+// 浏览器前进/后退：URL 是唯一来源，同步回 state 后重渲染。
+window.addEventListener('hashchange', () => {
+  const { tab, q } = parseHash();
+  const nextTab = tab || state.tab;
+  if (nextTab === state.tab && q === state.q) return;
+  clearTimeout(searchTimer);
+  searchTimer = null;
+  if (nextTab !== state.tab) state.status = 'all';
+  state.tab = nextTab;
+  state.q = q;
+  if (searchInput.value.trim().toLowerCase() !== q) searchInput.value = q;
+  safeSet('ga.tab', state.tab);
   render();
+});
+
+(function boot() {
+  const { tab, q } = parseHash();
+  if (tab) state.tab = tab;
+  if (!TABS.some(t => t.id === state.tab)) state.tab = 'rigs';
+  if (q) { state.q = q; searchInput.value = q; }
+  renderKPI();
+  render();
+  // 首次进入时 URL 可能没有 hash。先写入一条基准记录，
+  // 否则切换分区后第一次点“后退”会退回无 hash 状态而看起来没反应。
+  persist(false);
 })();
 </script>
 </body>
