@@ -1,0 +1,8 @@
+// Cloudflare Workers 部署配置：整个仓库就是一个静态站，直接把根目录当静态资源发布。
+// 有了这个文件，生产分支的 `wrangler deploy` 和预览分支的 `wrangler versions upload`
+// 都能找到要发布的内容，不再依赖后台里手填的命令参数。
+{
+  "name": "holy-sound-128a",
+  "compatibility_date": "2026-10-01",
+  "assets": { "directory": "." }
+}
