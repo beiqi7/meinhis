@@ -1,0 +1,11 @@
+# 不对外发布的文件（语法同 .gitignore）。只有 index.html 需要上线。
+.git
+.gitignore
+.assetsignore
+.wrangler
+node_modules
+wrangler.jsonc
+build-css.mjs
+*.swp
+*~
+.DS_Store

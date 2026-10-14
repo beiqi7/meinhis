@@ -2,3 +2,5 @@
 .DS_Store
 *.swp
 *~
+.wrangler/
+node_modules/
