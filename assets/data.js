@@ -161,7 +161,7 @@ const DEVICES = [
     "specs": [
       [
         "CPU",
-        "Intel® Core™ i5-13400TEF Processor（Raptor Lake, 10C/16T: 6P+4E, 20MB Smart Cache, 工控/行业定制版 = 13400F 低功耗无核显版; PBP 35W / MTP 82W, 官方最高睿频 4.50GHz；解锁功耗后全核 3.9GHz。Mouser CM8071505104107 / Intel PCN845263）"
+        "Intel® Core™ i5-13400TEF Processor（Raptor Lake C0 步进, 10C/16T: 6P+4E, 20MB Smart Cache, L2 6×1.25MB + 2MB, 工控/行业定制版 = 13400F 低功耗无核显版; PBP 35W / MTP 82W, 最高睿频 4.50GHz (45×)；解锁功耗后全核 3.9GHz (39×)，CPU-Z 2.17 实测。Mouser CM8071505104107 / Intel PCN845263）"
       ],
       [
         "主板",
