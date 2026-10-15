@@ -126,7 +126,7 @@ const DEVICES = [
       ],
       [
         "显卡",
-        "ASUS Dual 雪豹 GeForce RTX™ 4070 SUPER EVO OC 12GB 黑色 (DUAL-RTX4070S-O12G-EVO, AD104-350-A1, 7168 CUDA, 224 TMU, 80 ROP, 192-bit 21Gbps, 504GB/s, 220W TGP, Boost OC 2550 / Gaming 2520MHz, 2.5 槽 227.2×123.2×49.6mm, 1×16-pin, SFF-Ready)"
+        "ASUS Dual 雪豹 GeForce RTX™ 4070 SUPER EVO OC 12GB GDDR6X 黑色 (DUAL-RTX4070S-O12G-EVO, AD104-350-A1, 7168 CUDA, 224 TMU, 80 ROP, 192-bit 21Gbps, 504GB/s, 220W TGP, Boost OC 2550 / Gaming 2520MHz, 2.5 槽 227.2×123.2×49.6mm, 1×16-pin, SFF-Ready)"
       ],
       [
         "存储阵列 (4盘 · 4TB)",
@@ -165,7 +165,7 @@ const DEVICES = [
       ],
       [
         "主板",
-        "ASUS PRIME B660M-K D4 Micro-ATX Motherboard (Intel® B660 Chipset, 6+1+1 相 DrMOS 供电, 2×PCIe 4.0 x4 M.2, 1GbE LAN)"
+        "ASUS PRIME B660M-K D4 Micro-ATX Motherboard (Intel® B660 Chipset, 8 相供电, 2×PCIe 4.0 x4 M.2, 1GbE LAN)"
       ],
       [
         "内存",
@@ -216,7 +216,7 @@ const DEVICES = [
       ],
       [
         "转码显卡",
-        "肥猫家魔改 NVIDIA RTX A2000 Mobile 8GB GDDR6 (GA107, 2560 CUDA, 80 TMUs, 48 ROPs, 128-bit, 70W TGP, 第7代 NVENC / AV1 硬件解码)"
+        "肥猫家魔改 NVIDIA RTX A2000 Mobile 8GB GDDR6 (GA107, 2560 CUDA, 80 TMUs, 32 ROPs, 128-bit, 70W TGP, 第7代 NVENC / AV1 硬件解码)"
       ],
       [
         "存储阵列拓扑 (36.1TB)",
@@ -310,7 +310,7 @@ const DEVICES = [
       ],
       [
         "机身",
-        "1.27kg 镁铝混合 CNC · 16.5×294×222mm · 50Wh 四电芯 · 双 Thunderbolt™ 4 40Gbps + USB-A + HDMI + microSD · Bang & Olufsen 四扬声器 · 指纹 · MrChromebox Full ROM 刷入 Windows 11 Pro（Coolstar 声卡 / 雷电驱动满血）"
+        "1.27kg 镁铝混合 CNC · 16.5×294×222mm · 51Wh (50.97Wh) 四电芯 · 双 Thunderbolt™ 4 40Gbps + USB-A 10Gbps + HDMI 2.0 + microSD · Bang & Olufsen 四扬声器 · 指纹 · MrChromebox Full ROM 刷入 Windows 11 Pro（Coolstar 声卡 / 雷电驱动满血）"
       ]
     ],
     "footL": "顶级做工的 Windows 旗舰便携平替"
@@ -335,7 +335,7 @@ const DEVICES = [
       ],
       [
         "屏幕",
-        "10.1\" 1280×800 IPS 触控屏"
+        "10.1\" 1920×1200 IPS 触控屏"
       ],
       [
         "显卡",
@@ -414,7 +414,7 @@ const DEVICES = [
       ],
       [
         "机身",
-        "1.27kg 镁铝混合 CNC · 16.5×294×222mm · 50Wh 四电芯 · 双 Thunderbolt™ 4 40Gbps + USB-A + HDMI + microSD · Bang & Olufsen 四扬声器 · 指纹 · MrChromebox Full ROM 刷入 Windows 11 Pro（Coolstar 声卡 / 雷电驱动满血）"
+        "1.27kg 镁铝混合 CNC · 16.5×294×222mm · 51Wh (50.97Wh) 四电芯 · 双 Thunderbolt™ 4 40Gbps + USB-A 10Gbps + HDMI 2.0 + microSD · Bang & Olufsen 四扬声器 · 指纹 · MrChromebox Full ROM 刷入 Windows 11 Pro（Coolstar 声卡 / 雷电驱动满血）"
       ]
     ],
     "footL": "990 元入手 · 256G 原盘 / 已出手",
@@ -484,7 +484,7 @@ const DEVICES = [
       ],
       [
         "机身",
-        "约 1.39–1.46kg 全铝碳纤 2-in-1 · 约 16.2mm · 4-cell 52Wh ExpressCharge / 65W Type-C · 刷 Win10，驱动照抄 7410 Windows 版 · 2023–2026.3"
+        "约 1.63kg 铝合金 2-in-1 · 16.15–18.5mm · 4-cell 52Wh ExpressCharge / 65W Type-C · 刷 Win10，驱动照抄 7410 Windows 版 · 2023–2026.3"
       ]
     ],
     "footL": "历史置换功臣",
@@ -667,7 +667,7 @@ const DEVICES = [
       ],
       [
         "其他",
-        "独创外置金属镜头环被动导热结构 + IP68/MIL-STD-810H 防护认证 · 可扩 microSD"
+        "独创外置金属镜头环被动导热结构 + IPX5/IPX8 防水 · IP6X 防尘 · 可扩 microSD"
       ]
     ],
     "footL": "纯血日系光学天花板",
@@ -860,7 +860,7 @@ const DEVICES = [
       ],
       [
         "其他",
-        "60% 再生环保塑料, IPX5/7 + IP6X / MIL-STD-810H 18项防护 · 实体 nano-SIM + 原生海外 eSIM 双卡双待, 3730mAh 电池"
+        "60% 再生环保塑料, IPX5/IPX8 + IP6X / MIL-STD-810H 18项防护 · 实体 nano-SIM + 原生海外 eSIM 双卡双待, 3730mAh 电池"
       ]
     ],
     "footL": "跨国通信与 eSIM 特种终端",
@@ -891,7 +891,7 @@ const DEVICES = [
       ],
       [
         "摄像头",
-        "50MP Sony IMX906 35mm F1.59 人文定焦 OIS 主摄 + 50MP 13mm 超广角/微距 + 8MP 80mm OIS 长焦"
+        "50MP Sony IMX906 35mm F1.59 人文定焦 OIS 主摄 + 50MP 13mm 超广角/微距 + 8MP 80mm 长焦"
       ],
       [
         "重量",
@@ -1044,7 +1044,7 @@ const DEVICES = [
       ],
       [
         "摄像头",
-        "16.4MP F1.9 OIS 主摄"
+        "22.6MP F1.9 22mm 超广角 OIS 主摄 + 16.3MP 前置"
       ],
       [
         "重量",
@@ -1116,7 +1116,7 @@ const DEVICES = [
       ],
       [
         "屏幕",
-        "5.5\" 2220×1080 P-OLED"
+        "5.5\" 2160×1080 P-OLED"
       ],
       [
         "摄像头",
@@ -1188,7 +1188,7 @@ const DEVICES = [
       ],
       [
         "RAM/ROM",
-        "4/6GB LPDDR4x + 64/128GB"
+        "4/6GB + 64/128GB eMMC 5.0"
       ],
       [
         "屏幕",
@@ -1511,7 +1511,7 @@ const DEVICES = [
       ],
       [
         "性能",
-        "顺序读约 3500MB/s · 写约 1600MB/s"
+        "顺序读约 3000MB/s · 写约 1600MB/s（2230 / 256GB 档）"
       ],
       [
         "功耗",
@@ -1640,7 +1640,7 @@ const DEVICES = [
       ],
       [
         "性能",
-        "7200RPM · 介质传输 171MB/s · 缓存 32MB"
+        "7200RPM · 介质传输最高 1369Mbit/s（约 171MB/s）· 缓存 32MB"
       ],
       [
         "外形",
@@ -1749,7 +1749,7 @@ const DEVICES = [
       ],
       [
         "兼容",
-        "LGA2011-3 Xeon E5 v3/v4（本机 E5-2666 v3 / E5-2686 v4 内存控制器兼容 DDR3 / DDR4；Intel 官方只标 DDR4，DDR3 需搭配 X99 DDR3 版主板）"
+        "LGA2011-3 Xeon E5 v3/v4（E5-2666 v3 官方即支持 DDR3-1866 / DDR4-2133；E5-2686 v4 Intel 官方只标 DDR4，DDR3 需搭配 X99 DDR3 版主板）"
       ],
       [
         "履历",
@@ -2076,7 +2076,7 @@ const DEVICES = [
       ],
       [
         "内存 / I/O",
-        "四通道 · 内存控制器兼容 DDR3 / DDR4（Intel 官方标 DDR4-2133，本机走 DDR3-1866 ECC REG）· ECC · PCIe 3.0 ×40 · QPI 2× 9.6GT/s"
+        "四通道 · 内存支持 DDR3-1866 / DDR4-2133（Amazon 定制 OEM 款，官方规格即含 DDR3；本机走 DDR3-1866 ECC REG）· ECC · PCIe 3.0 ×40 · QPI 2× 9.6GT/s"
       ],
       [
         "指令集",
@@ -2227,15 +2227,15 @@ const DEVICES = [
     "specs": [
       [
         "定位",
-        "ATK 烈空 F1 V2 系列 Ultra Max 2.0。准对称中小手抓握，纳米涂层，Nordic 54 系主控 + 绝鲨 MAX 方案"
+        "ATK 烈空 F1 V2 系列 Ultra Max 2.0。准对称中小手抓握，纳米涂层，Nordic 54L15 主控"
       ],
       [
         "传感器",
-        "Ultra Max 档 PAW3395 Ultra（同系列 Ultimate/Extreme 才上 PAW3950 Ultra）"
+        "Ultra Max 2.0 档 PAW3395 Ultra · 100–30000 DPI（同系列 Ultimate/Extreme 才上 PAW3950 Ultra）"
       ],
       [
         "连接/回报",
-        "USB-C 有线 + 2.4G 无线双 8K 轮询 · 另有蓝牙三模版本流通"
+        "USB-C 有线 / 2.4G / 蓝牙三模 · 有线与无线双 8K 轮询"
       ],
       [
         "重量/尺寸",
@@ -2243,7 +2243,7 @@ const DEVICES = [
       ],
       [
         "其他",
-        "TTC 金轮编码器 · 长续航大电池档（Ultra Max 官方宣传可达数百小时量级，视回报率）"
+        "TTC 金轮编码器 · ATK 光刃机械微动 · 800mAh（1000Hz 下官方 600+ 小时）"
       ]
     ],
     "footL": "烈空 F1 V2 Ultra Max 双 8K",
@@ -2307,7 +2307,7 @@ const DEVICES = [
       ],
       [
         "轴体",
-        "ROG RX Red 光学机械轴 · 线性 · 中央光源 · 总行程 4mm / 触发行程 1.5mm / 触发约 45gf / 触底 55gf · 寿命 1 亿次 · 1ms 光触发"
+        "ROG RX Red 光学机械轴 · 线性 · 中央光源 · 总行程 4mm / 触发行程 1.5mm / 初始压力 40gf / 触底 55gf · 寿命 1 亿次 · 1ms 光触发"
       ],
       [
         "结构",
@@ -2383,7 +2383,7 @@ const DEVICES = [
       ],
       [
         "麦克风",
-        "可拆卸降噪动圈麦"
+        "可拆卸降噪驻极体电容麦（心形指向）"
       ],
       [
         "佩戴",
@@ -2458,7 +2458,7 @@ const DEVICES = [
       ],
       [
         "佩戴",
-        "天鹅绒耳垫 · 紧凑头梁 · 约 196g"
+        "天鹅绒耳垫 · 紧凑头梁 · 约 194g（不含线）"
       ],
       [
         "用途",
