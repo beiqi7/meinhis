@@ -225,7 +225,7 @@ const DEVICES = [
           "1× Seagate BarraCuda 4TB 3.5\" Desktop HDD (ST4000DM004, 5400RPM, 256MB 缓存)",
           "1× Toshiba DT01ACA100 1TB 3.5\" 7200RPM Desktop HDD (32MB 缓存)",
           "1× Seagate ST1000DM003 1TB 3.5\" 7200RPM Desktop HDD (64MB 缓存)",
-          "1× HGST Travelstar 7K1000 HTS721010A9E630 1TB 2.5\" 7200RPM 9.5mm 32MB SATA 6Gb/s",
+          "1× HGST Travelstar 7K1000 HTS721010A9E630 1TB 2.5\" 7200RPM 9.5mm 32MB SATA 6Gb/s · 拆自报废的 MSI GT73EVR",
           "1× 幻隐 HS2000 1TB 2.5\" SATA 6Gb/s",
           "1× KimMiDi SSD T900 128GB mSATA SATA 6Gb/s · Z77 板载 mSATA 引导"
         ]
@@ -267,7 +267,7 @@ const DEVICES = [
       [
         "存储配置",
         [
-          "OS: Toshiba XG3 THNSN5128GPU7 128GB M.2 2280 PCIe 3.0 x4 NVMe · 读 2100 / 写 600",
+          "OS: Toshiba XG3 THNSN5128GPU7 128GB M.2 2280 PCIe 3.0 x4 NVMe · 读 2100 / 写 600 · 拆自报废的 MSI GT73EVR",
           "Data SSD: 梵想 S100 Pro 500GB 2.5\" SATA 6Gb/s · 标称读约 550MB/s"
         ]
       ],
@@ -469,7 +469,7 @@ const DEVICES = [
     "flag": "已售出",
     "title": "IPASON (攀升) 暴风龙 S2 14.0英寸轻薄本",
     "sub": "出 Latitude 7410 → 购入 暴风龙 S2，算力翻倍与轻量化兼备，现已出手",
-    "tags": "攀升 暴风龙 s2 5600u 2k轻薄本 7410置换 笔记本 zen3 cezanne 151元 vega7 ipason 已售出 铨兴 p300 酷芯客 海力士 oem",
+    "tags": "攀升 暴风龙 s2 5600u 2k轻薄本 7410置换 笔记本 zen3 cezanne 151元 vega7 ipason 已售出 铨兴 p300 酷芯客 海力士 oem 拆下留用",
     "specs": [
       [
         "CPU",
@@ -477,7 +477,7 @@ const DEVICES = [
       ],
       [
         "RAM/ROM",
-        "16GB (8GB × 2) DDR4-2666 攀升 OEM 海力士颗粒 + 铨兴 酷芯客 P300 512GB M.2 2280 NVMe PCIe 3.0 · 读 2800MB/s"
+        "16GB (8GB × 2) DDR4-2666 攀升 OEM 海力士颗粒 + 铨兴 酷芯客 P300 512GB M.2 2280 NVMe PCIe 3.0 · 读 2800MB/s（出售时 P300 固态拆下留用，未随机卖出，现闲置在仓储）"
       ],
       [
         "屏幕",
@@ -609,7 +609,7 @@ const DEVICES = [
     "flag": "显卡烧毁报废",
     "title": "MSI GT73EVR 7RD Titan (朋友赠送)",
     "sub": "17.3 英寸 Titan 桌面替代模具，朋友赠送、专职打游戏的纯游戏机。2025年高负载游戏时突然黑屏，显卡芯片虚焊/损坏功成身退",
-    "tags": "msi gt73evr 7rd titan 7700hq 1060 朋友送 黑屏 显卡报废 已坏 hts721010a9e630 thnsn5128gpu7 kingston 2400",
+    "tags": "msi gt73evr 7rd titan 7700hq 1060 朋友送 黑屏 显卡报废 已坏 hts721010a9e630 thnsn5128gpu7 kingston 2400 拆下留用",
     "specs": [
       [
         "CPU",
@@ -617,7 +617,7 @@ const DEVICES = [
       ],
       [
         "RAM/ROM",
-        "16GB (8GB × 2) Kingston DDR4-2400 OEM + Toshiba XG3 THNSN5128GPU7 128GB M.2 2280 PCIe 3.0 x4 + HGST HTS721010A9E630 1TB 2.5\" 7200RPM 32MB"
+        "16GB (8GB × 2) Kingston DDR4-2400 OEM + Toshiba XG3 THNSN5128GPU7 128GB M.2 2280 PCIe 3.0 x4 + HGST HTS721010A9E630 1TB 2.5\" 7200RPM 32MB（报废后两块盘均拆下留用：Toshiba 128G 现为 NODE-04 系统盘，HGST 1TB 现装在 NODE-03 存储阵列）"
       ],
       [
         "屏幕",
@@ -629,7 +629,7 @@ const DEVICES = [
       ],
       [
         "机身",
-        "4.14kg Titan 桌面替代模具 · 428×287×24–49mm · Intel HM175 · 8-Cell 75Wh · 230W 适配器 · 服役 2023–2025，机械硬盘与零件拆解备用"
+        "4.14kg Titan 桌面替代模具 · 428×287×24–49mm · Intel HM175 · 8-Cell 75Wh · 230W 适配器 · 服役 2023–2025，其余零件拆解备用"
       ]
     ],
     "footL": "高负载战死沙场",
@@ -1564,6 +1564,37 @@ const DEVICES = [
     ],
     "footL": "2230 短槽 Gen4",
     "footR": "借出"
+  },
+  {
+    "id": "quanxing-p300-512gb",
+    "tab": "spares",
+    "status": "vault",
+    "group": "存储备件",
+    "badge": "M.2 NVMe 拆机盘 / 闲置",
+    "flag": "攀升 S2 拆下",
+    "title": "铨兴 酷芯客 P300 512GB M.2 2280 NVMe SSD",
+    "sub": "攀升 暴风龙 S2 的原装固态，出售笔记本时拆下留用，未随机卖出，目前闲置",
+    "tags": "铨兴 酷芯客 p300 512g nvme pcie 3.0 ssd 2280 固态 闲置 拆机 攀升 暴风龙 s2 仓库",
+    "specs": [
+      [
+        "规格",
+        "铨兴 酷芯客 P300 · M.2 2280 · NVMe PCIe 3.0"
+      ],
+      [
+        "性能",
+        "顺序读约 2800MB/s"
+      ],
+      [
+        "容量",
+        "512GB"
+      ],
+      [
+        "来源",
+        "拆自已售出的 攀升 暴风龙 S2 (Ryzen 5 5600U)，笔记本出手时单独留下"
+      ]
+    ],
+    "footL": "PCIe 3.0 NVMe 备用盘",
+    "footR": "闲置"
   },
   {
     "id": "hp-s700-500gb",
@@ -2522,7 +2553,7 @@ const HISTORY = [
       "边缘服务中枢：中柏 N100 双网口迷你主机，32GB DDR4 2666 单条 + Toshiba THNSN5128GPU7 128G NVMe + 梵想 S100 Pro 500GB，现运行飞牛OS (fnOS)，常驻 QQ 机器人 (ASTRBOT/NAPCAT) 与 AdGuard Home 广告过滤。",
       "移动端重大换代：以 799 元出掉 DELL Latitude 7410 2-in-1；以 950 元购入 攀升 暴风龙 S2 (Ryzen 5 5600U + 16G + 512G + 2.5K屏, 1.3kg)，仅补 151 元实现 CPU 算力翻倍；购入 Acer Chromebook Spin 13 (i7-8650U + 16GB LPDDR3 1866 + 3:2 2K QHD 触控屏 + Wacom) 刷好 Win10 作为独立阅读与办公副机。",
       "同款双机成型：以 990 元再入一台完全同款的 HP Elite Dragonfly 13.5 (i5-1245U + 16GB + 原厂 256GB)，与主力 MOBILE-01 出厂配置完全一致（一号机后自行换装 512G 致态），互为备份与轮换。",
-      "笔记本矩阵收缩：同款二号 HP Dragonfly (256G 原盘) 与 攀升 暴风龙 S2 先后出手，Acer Spin 13 留在家里给爸爸用，随身只留主力 Dragonfly 一台；T7 中继随之闲置。",
+      "笔记本矩阵收缩：同款二号 HP Dragonfly (256G 原盘) 与 攀升 暴风龙 S2 先后出手（S2 的铨兴 P300 512G 固态拆下留用，现闲置），Acer Spin 13 留在家里给爸爸用，随身只留主力 Dragonfly 一台；T7 中继随之闲置。",
       "标压大屏补位 (2026.10)：购入 玄派 玄智星墨影 16.1 寸 (AMD Ryzen 7 7840H 54W + Radeon 780M + 海力士 32GB LPDDR5-6400 + SSSTC CL5-8D1024 1TB PCIe 4.0 + 2.5K 165Hz)，编为 MOBILE-02，与 13.5 寸 Dragonfly 形成「大屏性能 + 轻薄便携」双笔电组合。",
       "手机换代：升级为 OPPO Find X9 Pro 5G (16+512)，原主力 nubia Z60S Pro (16+512) 转入备用摄影收藏。"
     ]
@@ -2546,7 +2577,7 @@ const HISTORY = [
     "title": "B450M 传家宝升级 R5 5500 与微星 Titan 1060 笔记本战死",
     "body": [
       "台式主力微升：B450M 主板保持不动，CPU 从 R5 2600 升级为 AMD Ryzen 5 5500 (6C/12T Cezanne 7nm) + 16GB DDR4 2666 + 128G SSD + 1T M.2 NVMe + 大学期间购置的 MSI Radeon RX 580 8GB 2048SP。",
-      "微星笔记本暴毙 (2023-2025)：朋友赠送的 MSI GT73EVR 7RD Titan (i7-7700HQ + 16G DDR4-2400 + GTX 1060 6G + Toshiba 128G NVMe + 1T HGST 7200RPM) 专职当纯游戏机，于 2025 年高负载游戏时突然黑屏显卡芯片虚焊损坏，功成身退。"
+      "微星笔记本暴毙 (2023-2025)：朋友赠送的 MSI GT73EVR 7RD Titan (i7-7700HQ + 16G DDR4-2400 + GTX 1060 6G + Toshiba 128G NVMe + 1T HGST 7200RPM) 专职当纯游戏机，于 2025 年高负载游戏时突然黑屏显卡芯片虚焊损坏，功成身退；Toshiba 128G NVMe 与 HGST 1TB 机械盘拆下留用，分别转入 NODE-04 系统盘与 NODE-03 存储阵列。"
     ]
   },
   {
