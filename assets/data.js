@@ -316,6 +316,46 @@ const DEVICES = [
     "footL": "顶级做工的 Windows 旗舰便携平替"
   },
   {
+    "id": "mobile-02",
+    "tab": "laptops",
+    "status": "active",
+    "accent": "violet",
+    "cores": 8,
+    "badge": "MOBILE-02 // 16 寸标压性能本",
+    "flag": "2026.10 新入列",
+    "title": "玄派 玄智星墨影 16.1\" (R7 7840H · 32G + 1T · 165Hz)",
+    "sub": "54W 满血释放的 Zen 4 标压 U + Radeon 780M 满血核显，16.1 寸 2.5K 165Hz 大屏 + 双 M.2，可接 OCuLink 外置显卡",
+    "tags": "玄派 玄智星 墨影 xuanpai 7840h 780m zen4 phoenix rdna3 165hz 2.5k 16.1 32g 1t lpddr5 6400 hynix 海力士 h9jcnnnfa5mlyr-n6e ssstc 建兴 kioxia cl5-8d1024 as-ssd 4944 oculink 双m2 54w 狂暴模式 标压 核显 现役 新机",
+    "specs": [
+      [
+        "CPU",
+        "AMD Ryzen™ 7 7840H Processor (Zen 4 Phoenix, TSMC 4nm, 8C/16T, 3.8–5.1GHz, 16MB L3, 本机狂暴模式持续 54W)"
+      ],
+      [
+        "RAM/ROM",
+        [
+          "SK hynix (海力士) H9JCNNNFA5MLYR-N6E 32GB (8GB × 4) LPDDR5-6400 板载 · 4×32-bit 共 128-bit · 实测 6400MHz",
+          "SSSTC (建兴储存 · KIOXIA 集团) CL5-8D1024 1TB M.2 2280 PCIe 4.0 x4 NVMe · 第二条 M.2 空位（D 面快拆小盖板）",
+          "AS SSD 实测：顺序 读 3132.44 / 写 1895.50 MB/s · 4K 读 53.90 / 写 210.96 MB/s · 4K-64Thrd 读 1479.88 / 写 1807.89 MB/s · 访问时间 读 0.021 / 写 0.278 ms · 总分 4944"
+        ]
+      ],
+      [
+        "屏幕",
+        "16.1\" 16:9 2.5K IPS (2560×1440 / 165Hz / 100% sRGB / DC 调光 / 雾面防眩光)"
+      ],
+      [
+        "显卡",
+        "AMD Radeon™ 780M Graphics (RDNA 3, 12 CU @ 2700MHz，满血核显，共享 128-bit LPDDR5-6400)"
+      ],
+      [
+        "机身",
+        "约 1.8kg 全金属阳极氧化机身 · 厚约 17.95mm · 70Wh · 全功能 Type-C + 3× USB-A 3.2 Gen1 + HDMI 2.0 + 全尺寸 SD + 翻盖式千兆 RJ45 + 3.5mm · Wi-Fi 6E · 电源键指纹 · 数字小键盘 · 双风扇双热管 · Fn+Q 三档性能模式（封印 / 战斗 / 狂暴）· 第二 M.2 可接官方 OCuLink 转接套件外接显卡"
+      ]
+    ],
+    "footL": "54W 标压 7840H + 780M 满血核显的大屏全能副主力",
+    "footR": "New Arrival"
+  },
+  {
     "id": "jumper-ezpad-8",
     "tab": "laptops",
     "status": "active",
@@ -2483,6 +2523,7 @@ const HISTORY = [
       "移动端重大换代：以 799 元出掉 DELL Latitude 7410 2-in-1；以 950 元购入 攀升 暴风龙 S2 (Ryzen 5 5600U + 16G + 512G + 2.5K屏, 1.3kg)，仅补 151 元实现 CPU 算力翻倍；购入 Acer Chromebook Spin 13 (i7-8650U + 16GB LPDDR3 1866 + 3:2 2K QHD 触控屏 + Wacom) 刷好 Win10 作为独立阅读与办公副机。",
       "同款双机成型：以 990 元再入一台完全同款的 HP Elite Dragonfly 13.5 (i5-1245U + 16GB + 原厂 256GB)，与主力 MOBILE-01 出厂配置完全一致（一号机后自行换装 512G 致态），互为备份与轮换。",
       "笔记本矩阵收缩：同款二号 HP Dragonfly (256G 原盘) 与 攀升 暴风龙 S2 先后出手，Acer Spin 13 留在家里给爸爸用，随身只留主力 Dragonfly 一台；T7 中继随之闲置。",
+      "标压大屏补位 (2026.10)：购入 玄派 玄智星墨影 16.1 寸 (AMD Ryzen 7 7840H 54W + Radeon 780M + 海力士 32GB LPDDR5-6400 + SSSTC CL5-8D1024 1TB PCIe 4.0 + 2.5K 165Hz)，编为 MOBILE-02，与 13.5 寸 Dragonfly 形成「大屏性能 + 轻薄便携」双笔电组合。",
       "手机换代：升级为 OPPO Find X9 Pro 5G (16+512)，原主力 nubia Z60S Pro (16+512) 转入备用摄影收藏。"
     ]
   },
@@ -2691,6 +2732,16 @@ const TOPO_SEED = {
       "note": "AX5400 Wi-Fi"
     },
     {
+      "id": "xzx",
+      "x": 0.63,
+      "y": 0.82,
+      "sz": 4,
+      "accent": "amber",
+      "title": "玄智星墨影",
+      "sub": "7840H · 780M",
+      "note": "AX5400 Wi-Fi"
+    },
+    {
       "id": "x9",
       "x": 0.78,
       "y": 0,
@@ -2811,6 +2862,11 @@ const TOPO_SEED = {
     {
       "a": "ax",
       "b": "spin",
+      "kind": "wifi"
+    },
+    {
+      "a": "ax",
+      "b": "xzx",
       "kind": "wifi"
     },
     {
