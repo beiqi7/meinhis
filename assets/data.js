@@ -131,9 +131,9 @@ const DEVICES = [
       [
         "存储阵列 (4盘 · 4TB)",
         [
-          "Fanxiang 梵想 S790E 1TB M.2 2280 PCIe 4.0 x4 NVMe · 联芸 MAP1602 DRAM-less + 长江存储 · 标称读 7100 / 写 6100（B450M-HDV 的 M.2 为 PCIe 3.0 x4，本机降速至约 3500MB/s）",
+          "Fanxiang 梵想 S790E 1TB M.2 2280 PCIe 4.0 x4 NVMe · 联芸 MAP1602 DRAM-less + 长江存储 · 标称读 7100 / 写 6100（B450M-HDV 的 M.2 为 PCIe 3.0 x4，本机降速至约 3500MB/s）· 拆自已售的神舟 ZX6-CU5DA",
           "幻隐 HS2000 1TB 2.5\" SATA 6Gb/s · 标称读 520MB/s / 写 470MB/s · 3D TLC",
-          "ORICO Y20 1TB 2.5\" SATA 6Gb/s · 100×70×7mm · 标称读 480MB/s / 写 500MB/s · 300TBW",
+          "ORICO Y20 1TB 2.5\" SATA 6Gb/s · 100×70×7mm · 标称读 500MB/s / 写 480MB/s · 300TBW",
           "WDC WD10EZEX-08WN4A0 1TB 3.5\" SATA 6Gb/s 7200RPM 64MB CMR"
         ]
       ],
@@ -157,7 +157,7 @@ const DEVICES = [
     "flag": "Ollama / ComfyUI 专用",
     "title": "Intel® Core™ i5-13400TEF + GALAXY 影驰 RTX™ 2060 12GB",
     "sub": "35W 特挑低压工控/SI 定制 U 解锁 PL1/PL2 全核 3.9GHz + 12GB 大显存平民 AI 生产力",
-    "tags": "13400tef 2060 12g 影驰 galax b660m 日常机 ai大模型 tu106 ollama comfyui raptorlake snv3s1000g rbusns8180s3512gj maxsun x5 wd5000aakx-001ca0",
+    "tags": "13400tef 2060 12g 影驰 galax b660m 日常机 ai大模型 tu106 ollama comfyui raptorlake snv3s1000g rbusns8180s3512gj ps3111 s11 bics3 tlc sbfk61e1 maxsun x5 wd5000aakx-001ca0",
     "specs": [
       [
         "CPU",
@@ -176,10 +176,10 @@ const DEVICES = [
         "GALAXY 影驰 GeForce RTX™ 2060 12GB 骁将MAX Pro (双 90mm 星将散热, TU106-300, 2176 CUDA, 272 Tensor Gen2, 34 RT Gen1, 12GB GDDR6 192-bit 14Gbps, 336GB/s, Boost 1650MHz)"
       ],
       [
-        "存储阵列",
+        "存储阵列 (4盘 · 2.49TB)",
         [
           "Kingston NV3 SNV3S1000G 1TB M.2 2280 PCIe 4.0 x4 NVMe · DRAM-less HMB · 3D QLC · 标称读 6000 / 写 4000 · 320TBW · SN 50026B7283975A9D",
-          "Kingston RBUSNS8180S3512GJ 512GB M.2 2280 SATA 6Gb/s · OEM 设计导入盘 · 512GB 档标称读 550 / 写 510 · SN 50026B76834F5F96",
+          "Kingston RBUSNS8180S3512GJ 512GB M.2 2280 SATA 6Gb/s · 群联 PS3111-S11 (2通道) 主控 + 东芝 64层 BiCS3 3D TLC (16 Die × 256Gb) · 固件 SBFK61E1 (2019.05) · 平均擦写 204 / 2000 次 · 标称读 550 / 写 510MB/s · SN 50026B76834F5F96 · 拆自已售的神舟 ZX6-CU5DA",
           "MAXSUN 铭瑄 终结者 X5 480GB 2.5\" SATA 6Gb/s · 512MB 缓存 · 标称读 550 / 写 480 · 100×69.8×6.9mm · SN MX106A3B60000000008",
           "WDC WD5000AAKX-001CA0 WD Blue 500GB 3.5\" SATA 6Gb/s 7200RPM 16MB CMR · 标称持续约 126MB/s · 147×101.6×26.1mm · SN WD-WCAYUR467642"
         ]
@@ -219,7 +219,7 @@ const DEVICES = [
         "肥猫家魔改 NVIDIA RTX A2000 Mobile 8GB GDDR6 (GA107, 2560 CUDA, 80 TMUs, 32 ROPs, 128-bit, 70W TGP, 第7代 NVENC / AV1 硬件解码)"
       ],
       [
-        "存储阵列拓扑 (36.1TB)",
+        "存储阵列拓扑 (7盘 · 36.1TB)",
         [
           "2× Western Digital Ultrastar DC HC620 14TB 3.5\"：HSH721414ALE6M0, 7200RPM, 512MB Buffer, Host-Managed SMR (HMSMR / ZBC/ZAC) 充氦盘 (Zoned Block 调度)",
           "1× Seagate BarraCuda 4TB 3.5\" Desktop HDD (ST4000DM004, 5400RPM, 256MB 缓存)",
@@ -265,7 +265,7 @@ const DEVICES = [
         "Gloway (光威) 32GB DDR4 2666MHz SO-DIMM"
       ],
       [
-        "存储配置",
+        "存储配置 (2盘 · 628GB)",
         [
           "OS: Toshiba XG3 THNSN5128GPU7 128GB M.2 2280 PCIe 3.0 x4 NVMe · 读 2100 / 写 600 · 拆自报废的 MSI GT73EVR",
           "Data SSD: 梵想 S100 Pro 500GB 2.5\" SATA 6Gb/s · 标称读约 550MB/s"
@@ -284,6 +284,7 @@ const DEVICES = [
     "id": "mobile-01",
     "tab": "laptops",
     "status": "active",
+    "group": "现役与家用",
     "accent": "cyan",
     "cores": 10,
     "badge": "MOBILE-01 // 商务旗舰魔改本",
@@ -319,6 +320,7 @@ const DEVICES = [
     "id": "mobile-02",
     "tab": "laptops",
     "status": "active",
+    "group": "现役与家用",
     "accent": "violet",
     "cores": 8,
     "badge": "MOBILE-02 // 16 寸标压性能本",
@@ -359,6 +361,8 @@ const DEVICES = [
     "id": "jumper-ezpad-8",
     "tab": "laptops",
     "status": "active",
+    "group": "现役与家用",
+    "accent": "cyan",
     "badge": "COMPACT TABLET",
     "flag": "现役",
     "title": "Jumper EZpad 8 · 10.1\" 便携平板 (4+64)",
@@ -393,6 +397,7 @@ const DEVICES = [
     "id": "acer-chromebook-spin",
     "tab": "laptops",
     "status": "family",
+    "group": "现役与家用",
     "accent": "slate",
     "cores": 4,
     "badge": "FAMILY LAPTOP // 3:2 QHD 翻转触控本",
@@ -429,6 +434,7 @@ const DEVICES = [
     "id": "hp-elite-dragonfly",
     "tab": "laptops",
     "status": "sold",
+    "group": "历史退役与战损",
     "cores": 10,
     "badge": "HISTORICAL LAPTOP // 同款二号机",
     "flag": "已售出",
@@ -464,6 +470,7 @@ const DEVICES = [
     "id": "ipason-s2-14-0",
     "tab": "laptops",
     "status": "sold",
+    "group": "历史退役与战损",
     "cores": 6,
     "badge": "HISTORICAL LAPTOP // 高能效出差轻薄本",
     "flag": "已售出",
@@ -499,6 +506,7 @@ const DEVICES = [
     "id": "dell-latitude-7410",
     "tab": "laptops",
     "status": "sold",
+    "group": "历史退役与战损",
     "cores": 4,
     "badge": "HISTORICAL LAPTOP",
     "flag": "799元已售出",
@@ -534,12 +542,13 @@ const DEVICES = [
     "id": "zx6-cu5da",
     "tab": "laptops",
     "status": "sold",
+    "group": "历史退役与战损",
     "cores": 6,
     "badge": "COLLEGE WORKHORSE",
     "flag": "2026年已售 (内存硬盘留用)",
     "title": "神舟战神 ZX6-CU5DA 桌面端 CPU 游戏本",
     "sub": "大学时代（2020–2025）主力战斗机，搭载可更换的桌面级 LGA1200 处理器",
-    "tags": "神舟 zx6 cu5da 10400 1650 战神 大学主力 已售出 固态留用 内存留用 rbusns8180s3512gj",
+    "tags": "神舟 zx6 cu5da 10400 1650 战神 大学主力 已售出 固态留用 内存留用 rbusns8180s3512gj s790e",
     "specs": [
       [
         "CPU",
@@ -547,7 +556,7 @@ const DEVICES = [
       ],
       [
         "RAM/ROM",
-        "16GB (8G×2) DDR4-2666（双 SO-DIMM，平台上限 32GB）+ Kingston RBUSNS8180S3512GJ 512GB M.2 SATA + 后加 梵想 S790E 1TB（出售时内存与两块固态均拆下留用，Kingston 512G 现装在 NODE-02）"
+        "16GB (8G×2) DDR4-2666（双 SO-DIMM，平台上限 32GB）+ Kingston RBUSNS8180S3512GJ 512GB M.2 SATA（群联 PS3111-S11 + 东芝 64L BiCS3 TLC）+ 后加 梵想 S790E 1TB（出售时内存与两块固态均拆下留用：Kingston 512G 现装在 NODE-02，梵想 S790E 1TB 现装在 NODE-01）"
       ],
       [
         "屏幕",
@@ -569,6 +578,7 @@ const DEVICES = [
     "id": "iwork8-8-2-32",
     "tab": "laptops",
     "status": "sold",
+    "group": "历史退役与战损",
     "badge": "COMPACT TABLET",
     "flag": "已售出",
     "title": "iWork8 · 8\" 双系统平板 (2+32)",
@@ -603,6 +613,7 @@ const DEVICES = [
     "id": "msi-gt73evr-7rd",
     "tab": "laptops",
     "status": "dead",
+    "group": "历史退役与战损",
     "accent": "rose",
     "cores": 4,
     "badge": "FAILED IN BATTLE",
@@ -639,6 +650,7 @@ const DEVICES = [
     "id": "oppo-find-x9",
     "tab": "mobile",
     "status": "active",
+    "group": "现役主力与特种",
     "accent": "cyan",
     "badge": "FLAGSHIP DAILY DRIVER",
     "flag": "现役随身主力",
@@ -668,7 +680,7 @@ const DEVICES = [
       ],
       [
         "其他",
-        "7500mAh 电池（80W 有线 / 50W 无线）· Wi-Fi 7 · USB 3.2 Gen 1 · 屏下超声指纹 · 替换 Z60S Pro，ColorOS 流畅生态与全焦段稳定成片"
+        "7500mAh 电池（80W 有线 / 50W 无线）· IP66/IP68/IP69 防尘防水 · Wi-Fi 7 · USB 3.2 Gen 1 · 屏下超声指纹 · 替换 Z60S Pro，ColorOS 流畅生态与全焦段稳定成片"
       ]
     ],
     "footL": "日常主力通信",
@@ -678,6 +690,7 @@ const DEVICES = [
     "id": "sharp-aquos-r8",
     "tab": "mobile",
     "status": "active",
+    "group": "现役主力与特种",
     "accent": "violet",
     "badge": "1-INCH LEICA OPTICS",
     "flag": "现役纯血日系",
@@ -695,7 +708,7 @@ const DEVICES = [
       ],
       [
         "屏幕",
-        "6.6\" Pro IGZO OLED (1260×2730, 1–240Hz 自适应变频, 2000nits 峰值, 10-bit Dolby Vision)"
+        "6.6\" Pro IGZO OLED (2730×1260 WUXGA+, 1–240Hz 自适应变频, 2000nits 峰值, 10-bit Dolby Vision)"
       ],
       [
         "摄像头",
@@ -707,54 +720,18 @@ const DEVICES = [
       ],
       [
         "其他",
-        "独创外置金属镜头环被动导热结构 + IPX5/IPX8 防水 · IP6X 防尘 · 可扩 microSD"
+        "5000mAh 电池（Qi 无线充电）· 独创外置金属镜头环被动导热结构 + IPX5/IPX8 防水 · IP6X 防尘 · 可扩 microSD"
       ]
     ],
     "footL": "纯血日系光学天花板",
     "footR": "Leica Tuned"
   },
   {
-    "id": "sharp-aquos-r5g",
-    "tab": "mobile",
-    "status": "spare",
-    "badge": "LAST LCD FLAGSHIP",
-    "flag": "断触收藏",
-    "title": "Sharp AQUOS R5G (SoftBank 906SH)",
-    "sub": "12GB LPDDR5 + 256GB UFS 3.0 / Snapdragon® 865",
-    "tags": "sharp r5g 末代lcd 120hz 240hz igzo 收藏 双水滴 865 3168x1440 softbank 906sh",
-    "specs": [
-      [
-        "CPU",
-        "Qualcomm Snapdragon® 865 SM8250（7nm：1× Kryo 585 Prime / Cortex-A77 2.84GHz + 3× A77 2.42GHz + 4× A55 1.8GHz，GPU Adreno 650）"
-      ],
-      [
-        "RAM/ROM",
-        "12GB LPDDR5 + 256GB UFS 3.0"
-      ],
-      [
-        "屏幕",
-        "6.5\" 3168×1440 QHD+ 120Hz (240Hz 插帧) Pro IGZO LCD 顶级护眼屏, 10亿色, 1000nit"
-      ],
-      [
-        "摄像头",
-        "48MP 8K 超广角 + 12.2MP OIS 主摄 + 12.2MP OIS 长焦 + ToF 3D"
-      ],
-      [
-        "重量",
-        "约 189g · 162 × 75 × 8.9mm"
-      ],
-      [
-        "其他",
-        "出现日系通病断触，作为 LCD 黄金时代的终极标杆永久封存珍藏"
-      ]
-    ],
-    "footL": "护眼 LCD 时代最后的光辉",
-    "footR": "Collection Tier"
-  },
-  {
     "id": "sony-xperia-5",
     "tab": "mobile",
     "status": "active",
+    "group": "现役主力与特种",
+    "accent": "cyan",
     "badge": "21:9 COMPACT CINEMA",
     "flag": "现役影音",
     "title": "Sony Xperia 5 III 5G (XQ-BQ72)",
@@ -783,7 +760,7 @@ const DEVICES = [
       ],
       [
         "其他",
-        "68mm 极窄机身, 双段式物理快门按键, 3.5mm 独立耳机孔"
+        "4500mAh 电池（30W PD）· IP65/IP68 三防 · 68mm 极窄机身, 双段式物理快门按键, 3.5mm 独立耳机孔"
       ]
     ],
     "footL": "日系单手影音与 Alpha 相机微缩",
@@ -793,6 +770,7 @@ const DEVICES = [
     "id": "lg-g7-thinq",
     "tab": "mobile",
     "status": "active",
+    "group": "现役主力与特种",
     "accent": "lime",
     "badge": "HIFI AUDIO ENGINE",
     "flag": "现役无损转盘",
@@ -822,7 +800,7 @@ const DEVICES = [
       ],
       [
         "其他",
-        "ESS SABRE ES9218P 32-bit Quad DAC, 130dB SNR, 2Vrms 推动 600Ω 高阻大耳 · 专职无损音乐播放器、车载高保真音源解码与高阻抗耳机转盘"
+        "ESS SABRE ES9218P 32-bit Quad DAC, 130dB SNR, 2Vrms 推动 600Ω 高阻大耳 · 3000mAh 电池 · IP68 / MIL-STD-810G · 专职无损音乐播放器、车载高保真音源解码与高阻抗耳机转盘"
       ]
     ],
     "footL": "老牌音乐手机绝唱",
@@ -832,6 +810,7 @@ const DEVICES = [
     "id": "lenovo-xiaoxin-pad",
     "tab": "mobile",
     "status": "active",
+    "group": "现役主力与特种",
     "accent": "cyan",
     "badge": "12.7\" ENTERTAINMENT HUB",
     "flag": "现役大屏终端",
@@ -871,6 +850,7 @@ const DEVICES = [
     "id": "sharp-aquos-wish3",
     "tab": "mobile",
     "status": "active",
+    "group": "现役主力与特种",
     "accent": "cyan",
     "badge": "TACTICAL ESIM TERMINAL",
     "flag": "现役特种",
@@ -907,9 +887,50 @@ const DEVICES = [
     "footR": "eSIM Ready"
   },
   {
+    "id": "sharp-aquos-r5g",
+    "tab": "mobile",
+    "status": "spare",
+    "group": "典藏备用与待修",
+    "accent": "violet",
+    "badge": "LAST LCD FLAGSHIP",
+    "flag": "断触收藏",
+    "title": "Sharp AQUOS R5G (SoftBank 906SH)",
+    "sub": "12GB LPDDR5 + 256GB UFS 3.0 / Snapdragon® 865",
+    "tags": "sharp r5g 末代lcd 120hz 240hz igzo 收藏 双水滴 865 3168x1440 softbank 906sh",
+    "specs": [
+      [
+        "CPU",
+        "Qualcomm Snapdragon® 865 SM8250（7nm：1× Kryo 585 Prime / Cortex-A77 2.84GHz + 3× A77 2.42GHz + 4× A55 1.8GHz，GPU Adreno 650）"
+      ],
+      [
+        "RAM/ROM",
+        "12GB LPDDR5 + 256GB UFS 3.0"
+      ],
+      [
+        "屏幕",
+        "6.5\" 3168×1440 QHD+ 120Hz (240Hz 插帧) Pro IGZO LCD 顶级护眼屏, 10亿色, 1000nit"
+      ],
+      [
+        "摄像头",
+        "48MP 8K 超广角 + 12.2MP OIS 主摄 + 12.2MP OIS 长焦 + ToF 3D"
+      ],
+      [
+        "重量",
+        "约 189g · 162 × 75 × 8.9mm"
+      ],
+      [
+        "其他",
+        "3730mAh 电池 · IPX5/IPX8/IP6X 三防 · 出现日系通病断触，作为 LCD 黄金时代的终极标杆永久封存珍藏"
+      ]
+    ],
+    "footL": "护眼 LCD 时代最后的光辉",
+    "footR": "Collection Tier"
+  },
+  {
     "id": "nubia-z60s-pro",
     "tab": "mobile",
     "status": "spare",
+    "group": "典藏备用与待修",
     "accent": "violet",
     "badge": "35MM DOCUMENTARY MASTER",
     "flag": "备用 / 摄影收藏",
@@ -946,9 +967,50 @@ const DEVICES = [
     "footR": "Camera Flag"
   },
   {
+    "id": "acer-pawbo-p52",
+    "tab": "mobile",
+    "status": "spare",
+    "group": "典藏备用与待修",
+    "accent": "violet",
+    "badge": "SPARE TABLET",
+    "flag": "纯备用",
+    "title": "Acer Pawbo P52 Pro 10.8-inch Tablet",
+    "sub": "6GB RAM + 128GB / Android OS · 纯备用",
+    "tags": "acer pawbo p52 pro 平板 备用",
+    "specs": [
+      [
+        "CPU",
+        "MediaTek Helio X23 MT6797D（TSMC 20nm 十核：2× Cortex-A72 2.3GHz + 4× A53 1.85GHz + 4× A53 1.4GHz，GPU Mali-T880 MP4 @ 780MHz）"
+      ],
+      [
+        "RAM/ROM",
+        "6GB RAM + 128GB 高速存储"
+      ],
+      [
+        "屏幕",
+        "10.8 英寸 2560×1600 (2.5K WQXGA) 高分辨率 IPS 显示屏"
+      ],
+      [
+        "摄像头",
+        "8MP 后置（LED 闪光）"
+      ],
+      [
+        "重量",
+        "约 670g · 258 × 178 × 9.5mm"
+      ],
+      [
+        "其他",
+        "Android OS · 纯备用，闲置收纳"
+      ]
+    ],
+    "footL": "10.8\" 2.5K 备用平板",
+    "footR": "Spare"
+  },
+  {
     "id": "samsung-galaxy-z",
     "tab": "mobile",
     "status": "dead",
+    "group": "典藏备用与待修",
     "accent": "rose",
     "badge": "FOLDABLE BROKEN",
     "flag": "内屏待修",
@@ -985,47 +1047,10 @@ const DEVICES = [
     "footR": "Repair Pending"
   },
   {
-    "id": "acer-pawbo-p52",
-    "tab": "mobile",
-    "status": "spare",
-    "badge": "SPARE TABLET",
-    "flag": "纯备用",
-    "title": "Acer Pawbo P52 Pro 10.8-inch Tablet",
-    "sub": "6GB RAM + 128GB / Android OS · 纯备用",
-    "tags": "acer pawbo p52 pro 平板 备用",
-    "specs": [
-      [
-        "CPU",
-        "MediaTek Helio X23 MT6797D（TSMC 20nm 十核：2× Cortex-A72 2.3GHz + 4× A53 1.85GHz + 4× A53 1.4GHz，GPU Mali-T880 MP4 @ 780MHz）"
-      ],
-      [
-        "RAM/ROM",
-        "6GB RAM + 128GB 高速存储"
-      ],
-      [
-        "屏幕",
-        "10.8 英寸 2560×1600 (2.5K WQXGA) 高分辨率 IPS 显示屏"
-      ],
-      [
-        "摄像头",
-        "8MP 后置（LED 闪光）"
-      ],
-      [
-        "重量",
-        "约 670g · 258 × 178 × 9.5mm"
-      ],
-      [
-        "其他",
-        "Android OS · 纯备用，闲置收纳"
-      ]
-    ],
-    "footL": "10.8\" 2.5K 备用平板",
-    "footR": "Spare"
-  },
-  {
     "id": "xiaomi-mi-10",
     "tab": "mobile",
     "status": "sold",
+    "group": "历史已售机型",
     "badge": "HISTORICAL PHONE",
     "flag": "已售出",
     "title": "Xiaomi Mi 10 Lite Zoom (小米10青春版)",
@@ -1054,7 +1079,7 @@ const DEVICES = [
       ],
       [
         "其他",
-        "曾因 USB 数据通道烧毁仅支持慢充，现整机已售出"
+        "4160mAh 电池（22.5W 快充）· 曾因 USB 数据通道烧毁仅支持慢充，现整机已售出"
       ]
     ],
     "footL": "5倍光学潜望青春版 / 已出手",
@@ -1064,6 +1089,7 @@ const DEVICES = [
     "id": "sharp-aquos-r",
     "tab": "mobile",
     "status": "sold",
+    "group": "历史已售机型",
     "badge": "HISTORICAL PHONE",
     "flag": "已售出",
     "title": "Sharp AQUOS R (au SHV39)",
@@ -1102,6 +1128,7 @@ const DEVICES = [
     "id": "sony-xperia-xz2",
     "tab": "mobile",
     "status": "sold",
+    "group": "历史已售机型",
     "badge": "HISTORICAL PHONE",
     "flag": "已售出",
     "title": "Sony Xperia XZ2 Compact (docomo SO-05K)",
@@ -1140,6 +1167,7 @@ const DEVICES = [
     "id": "google-pixel-3",
     "tab": "mobile",
     "status": "sold",
+    "group": "历史已售机型",
     "badge": "HISTORICAL PHONE",
     "flag": "已售出",
     "title": "Google Pixel 3 (日版)",
@@ -1178,6 +1206,7 @@ const DEVICES = [
     "id": "sony-xperia-xz1",
     "tab": "mobile",
     "status": "sold",
+    "group": "历史已售机型",
     "badge": "HISTORICAL PHONE",
     "flag": "已售出",
     "title": "Sony Xperia XZ1 (国行)",
@@ -1216,6 +1245,7 @@ const DEVICES = [
     "id": "smartisan-pro-2",
     "tab": "mobile",
     "status": "sold",
+    "group": "历史已售机型",
     "badge": "HISTORICAL PHONE",
     "flag": "已售出",
     "title": "Smartisan (锤子) 坚果 Pro 2",
@@ -1254,6 +1284,7 @@ const DEVICES = [
     "id": "motorola-edge-s30",
     "tab": "mobile",
     "status": "sold",
+    "group": "历史已售机型",
     "badge": "HISTORICAL PHONE",
     "flag": "已售出",
     "title": "Motorola Edge S30 (12+256)",
@@ -1292,6 +1323,7 @@ const DEVICES = [
     "id": "oppo-r9s",
     "tab": "mobile",
     "status": "sold",
+    "group": "历史已售机型",
     "badge": "HISTORICAL PHONE",
     "flag": "已售出",
     "title": "OPPO R9s",
@@ -1330,6 +1362,7 @@ const DEVICES = [
     "id": "huawei-nova-7",
     "tab": "mobile",
     "status": "sold",
+    "group": "历史已售机型",
     "badge": "HISTORICAL PHONE",
     "flag": "已售出",
     "title": "HUAWEI nova 7 Pro (8+256)",
@@ -1368,6 +1401,7 @@ const DEVICES = [
     "id": "meizu-metal",
     "tab": "mobile",
     "status": "sold",
+    "group": "历史已售机型",
     "badge": "HISTORICAL PHONE",
     "flag": "已售出",
     "title": "Meizu (魅族) 魅蓝 Metal",
@@ -1438,6 +1472,41 @@ const DEVICES = [
     "footR": "封存"
   },
   {
+    "id": "pentium-ii-3dfx",
+    "tab": "spares",
+    "status": "vault",
+    "group": "整机备机",
+    "badge": "童年启蒙整机",
+    "flag": "仓库封存",
+    "title": "Intel® Pentium® II + 3dfx Voodoo + 80GB IDE",
+    "sub": "Slot 1 时代第一台机，梦开始的地方，零件都还在",
+    "tags": "pentium 2 奔腾2 slot1 voodoo 3dfx 80g ide 仓库 童年",
+    "specs": [
+      [
+        "CPU",
+        "Intel® Pentium® II（Slot 1 / P6，0.25µm Deschutes 常见档 266–450MHz，模块外置半速 512KB L2，MMX；具体频率档家里已经对不上丝印了）"
+      ],
+      [
+        "显卡",
+        "3dfx Voodoo 3D 硬件加速卡（Glide API；1/2/3 代数未标。系列共性：PCI 附加卡，Voodoo1 需另接 2D 卡出画，核心/显存常见 50MHz 起）"
+      ],
+      [
+        "存储",
+        "80GB 3.5\" IDE / PATA 机械硬盘 · 40-pin 并口 · 未标品牌与转速"
+      ],
+      [
+        "内存",
+        "编年史记录约 384MB SDRAM/DDR 时代条"
+      ],
+      [
+        "状态",
+        "整套零件仍在家中封存，不再点亮日常使用"
+      ]
+    ],
+    "footL": "Glide API 启蒙",
+    "footR": "封存"
+  },
+  {
     "id": "quadro-p400-2gb",
     "tab": "spares",
     "status": "vault",
@@ -1471,6 +1540,41 @@ const DEVICES = [
     ],
     "footL": "30W 专业转码刀卡",
     "footR": "待命"
+  },
+  {
+    "id": "sapphire-radeon-r7",
+    "tab": "spares",
+    "status": "vault",
+    "group": "显卡备件",
+    "badge": "横跨两代的功勋亮机卡",
+    "flag": "仓库封存",
+    "title": "Sapphire Radeon™ R7 240 1GB GDDR5 白金版",
+    "sub": "Oland 入门卡，从 775 跟到 AM4 的传奇 30W 亮机卡",
+    "tags": "sapphire r7 240 白金版 1g gddr5 oland 仓库",
+    "specs": [
+      [
+        "核心",
+        "AMD Oland PRO (GCN 1.0) · 28nm · 320 SP / 20 TMU / 8 ROP · 基频常见 730MHz / Boost 780MHz"
+      ],
+      [
+        "显存",
+        "1GB GDDR5 · 颗粒时钟约 1150MHz（等效 4.6Gbps）· TechPowerUp 白金版 1G 条目标 128-bit"
+      ],
+      [
+        "API / 输出",
+        "DirectX 12 (feature level 11_1) / OpenGL 4.6 / Mantle · HDMI + Dual-Link DVI + VGA"
+      ],
+      [
+        "功耗 / 供电",
+        "TDP 30W（TechPowerUp：公版与蓝宝石 1GB 版均为 30W，建议电源 200W）· 无外接供电 · 单槽 · PCIe 3.0 x8（物理 x16）"
+      ],
+      [
+        "履历",
+        "2017 插上 G41 终结 X4500；2020 跟到 Ryzen 5 2600 继续亮机；后被 RX 580 换下。现封存"
+      ]
+    ],
+    "footL": "775 → AM4 功勋卡",
+    "footR": "封存"
   },
   {
     "id": "radeon-rx-6600",
@@ -1987,76 +2091,6 @@ const DEVICES = [
     "footR": "封存"
   },
   {
-    "id": "sapphire-radeon-r7",
-    "tab": "spares",
-    "status": "vault",
-    "group": "显卡备件",
-    "badge": "横跨两代的功勋亮机卡",
-    "flag": "仓库封存",
-    "title": "Sapphire Radeon™ R7 240 1GB GDDR5 白金版",
-    "sub": "Oland 入门卡，从 775 跟到 AM4 的传奇 30W 亮机卡",
-    "tags": "sapphire r7 240 白金版 1g gddr5 oland 仓库",
-    "specs": [
-      [
-        "核心",
-        "AMD Oland PRO (GCN 1.0) · 28nm · 320 SP / 20 TMU / 8 ROP · 基频常见 730MHz / Boost 780MHz"
-      ],
-      [
-        "显存",
-        "1GB GDDR5 · 颗粒时钟约 1150MHz（等效 4.6Gbps）· TechPowerUp 白金版 1G 条目标 128-bit"
-      ],
-      [
-        "API / 输出",
-        "DirectX 12 (feature level 11_1) / OpenGL 4.6 / Mantle · HDMI + Dual-Link DVI + VGA"
-      ],
-      [
-        "功耗 / 供电",
-        "TDP 30W（TechPowerUp：公版与蓝宝石 1GB 版均为 30W，建议电源 200W）· 无外接供电 · 单槽 · PCIe 3.0 x8（物理 x16）"
-      ],
-      [
-        "履历",
-        "2017 插上 G41 终结 X4500；2020 跟到 Ryzen 5 2600 继续亮机；后被 RX 580 换下。现封存"
-      ]
-    ],
-    "footL": "775 → AM4 功勋卡",
-    "footR": "封存"
-  },
-  {
-    "id": "pentium-ii-3dfx",
-    "tab": "spares",
-    "status": "vault",
-    "group": "整机备机",
-    "badge": "童年启蒙整机",
-    "flag": "仓库封存",
-    "title": "Intel® Pentium® II + 3dfx Voodoo + 80GB IDE",
-    "sub": "Slot 1 时代第一台机，梦开始的地方，零件都还在",
-    "tags": "pentium 2 奔腾2 slot1 voodoo 3dfx 80g ide 仓库 童年",
-    "specs": [
-      [
-        "CPU",
-        "Intel® Pentium® II（Slot 1 / P6，0.25µm Deschutes 常见档 266–450MHz，模块外置半速 512KB L2，MMX；具体频率档家里已经对不上丝印了）"
-      ],
-      [
-        "显卡",
-        "3dfx Voodoo 3D 硬件加速卡（Glide API；1/2/3 代数未标。系列共性：PCI 附加卡，Voodoo1 需另接 2D 卡出画，核心/显存常见 50MHz 起）"
-      ],
-      [
-        "存储",
-        "80GB 3.5\" IDE / PATA 机械硬盘 · 40-pin 并口 · 未标品牌与转速"
-      ],
-      [
-        "内存",
-        "编年史记录约 384MB SDRAM/DDR 时代条"
-      ],
-      [
-        "状态",
-        "整套零件仍在家中封存，不再点亮日常使用"
-      ]
-    ],
-    "footL": "Glide API 启蒙",
-    "footR": "封存"
-  },
-  {
     "id": "x99-d3m4",
     "tab": "spares",
     "status": "sold",
@@ -2548,7 +2582,7 @@ const HISTORY = [
     "tag": "Dual Flagship + N100 Max",
     "title": "主力 FCLK 榨干、二奶机转入 13 代低功耗大显存平台、笔记本矩阵重组",
     "body": [
-      "主力游戏机：AMD Ryzen™ 7 5700X + ASRock B450M-HDV R1.0 + 光威 32GB (16G×2) 海力士颗粒手工拉升至 DDR4 3866MHz CL18 (FCLK 1933MHz 1:1 满血同步) + ASUS Dual RTX 4070 SUPER OC 12GB + 梵想 S790E 1T + 幻隐 HS2000 1T + ORICO Y20 1T + WD10EZEX-08WN4A0 + 长城 850W 铂金电源。",
+      "主力游戏机：AMD Ryzen™ 7 5700X + ASRock B450M-HDV R1.0 + 光威 32GB (16G×2) 海力士颗粒手工拉升至 DDR4 3866MHz CL18 (FCLK 1933MHz 1:1 满血同步) + ASUS Dual 雪豹 RTX 4070 SUPER EVO OC 12GB + 梵想 S790E 1T + 幻隐 HS2000 1T + ORICO Y20 1T + WD10EZEX-08WN4A0 + 长城 850W 铂金电源。",
       "日常 AI 二奶机：Intel® Core™ i5-13400TEF（解锁功耗全核 3.9GHz，官方最高睿频 4.50GHz）+ ASUS B660M-K D4 + 台电 32GB DDR4 3200 + 影驰 RTX 2060 12GB 双风扇 + Kingston SNV3S1000G 1TB + RBUSNS8180S3512GJ 512G + 铭瑄 X5 480G + WD5000AAKX-001CA0 500G + 航嘉 750W 铜牌电源。柜子上另有一块 WD5000AAKX。",
       "边缘服务中枢：中柏 N100 双网口迷你主机，32GB DDR4 2666 单条 + Toshiba THNSN5128GPU7 128G NVMe + 梵想 S100 Pro 500GB，现运行飞牛OS (fnOS)，常驻 QQ 机器人 (ASTRBOT/NAPCAT) 与 AdGuard Home 广告过滤。",
       "移动端重大换代：以 799 元出掉 DELL Latitude 7410 2-in-1；以 950 元购入 攀升 暴风龙 S2 (Ryzen 5 5600U + 16G + 512G + 2.5K屏, 1.3kg)，仅补 151 元实现 CPU 算力翻倍；购入 Acer Chromebook Spin 13 (i7-8650U + 16GB LPDDR3 1866 + 3:2 2K QHD 触控屏 + Wacom) 刷好 Win10 作为独立阅读与办公副机。",
@@ -2564,7 +2598,7 @@ const HISTORY = [
     "tag": "X99 E5 V3/V4 → 4070S",
     "title": "显卡划时代升级与 E5 多核洋垃圾服务器实践",
     "body": [
-      "主力机越级升级：CPU 换装 AMD Ryzen 7 5700X，显卡告别老旧 RX 580，直接跨入 ASUS Dual GeForce RTX 4070 SUPER OC 12GB，存储补齐 1T PCIe 4.0 S790E 固态（B450 主板只有 PCIe 3.0，暂时降速运行），2K/4K 3A 游戏性能彻底解放。",
+      "主力机越级升级：CPU 换装 AMD Ryzen 7 5700X，显卡告别老旧 RX 580，直接跨入 ASUS Dual 雪豹 GeForce RTX 4070 SUPER EVO OC 12GB，存储补齐 1T PCIe 4.0 S790E 固态（B450 主板只有 PCIe 3.0，暂时降速运行），2K/4K 3A 游戏性能彻底解放。",
       "二奶机折腾阶段 1 (2025.8)：Intel Xeon E5-2666 v3 (10C/20T) + 48GB (16G×3) 三星 DDR3-1866 ECC REG + 科脑 X99-D3M4 + 512GB SSD + NVIDIA Quadro P400 2GB。",
       "二奶机折腾阶段 2 (2025.12)：升级 CPU 为 Intel Xeon E5-2686 v4 (18C/36T Broadwell-EP, 45MB L3) + Quadro P400。",
       "二奶机折腾阶段 3 (2026.1 - 2026.3)：E5-2686 v4 平台换装 AMD Radeon RX 6600 8GB 显卡，完成多核实验后整套平台淘汰，全面转入现代低功耗平台，RX 6600 拆下后已出售回血。"
@@ -2588,7 +2622,7 @@ const HISTORY = [
     "body": [
       "高考后首台现代主机 (2020)：AMD Ryzen 5 2600 (6C/12T) + 华擎 B450M-HDV R1.0 + 16GB DDR4 2666 + 128GB SATA SSD + 陪伴多年的 320GB 老机械硬盘 + 功勋亮机卡蓝宝石 R7 240 1G 白金版继续站岗。",
       "显卡升级：大学期间将蓝宝石 R7 240 升级为 MSI Radeon RX 580 8GB 2048SP，加装 1TB M.2 固态。",
-      "大学移动主力：神舟战神 ZX6-CU5DA (桌面级 LGA1200 i5-10400 + GTX 1650 4GB + Kingston 512GB + 后加 梵想 S790E 1TB)，陪伴 2020–2025 整个大学时代，2026 年毕业工作后售出，内存与 Kingston 512G、梵想 S790E 两块固态拆下留用。"
+      "大学移动主力：神舟战神 ZX6-CU5DA (桌面级 LGA1200 i5-10400 + GTX 1650 4GB + Kingston 512GB + 后加 梵想 S790E 1TB)，陪伴 2020–2025 整个大学时代，2026 年毕业工作后售出，内存与 Kingston 512G、梵想 S790E 两块固态拆下留用（分别转入 NODE-02 与 NODE-01）。"
     ]
   },
   {
@@ -2678,8 +2712,9 @@ const TOPO_SEED = {
     },
     {
       "id": "n100",
+      "dev": "node-04",
       "x": 0.45,
-      "y": 0,
+      "y": 0.03,
       "sz": 3,
       "gig": true,
       "accent": "sky",
@@ -2689,8 +2724,9 @@ const TOPO_SEED = {
     },
     {
       "id": "nas",
+      "dev": "node-03",
       "x": 0.45,
-      "y": 0.18,
+      "y": 0.21,
       "sz": 3,
       "gig": true,
       "accent": "green",
@@ -2700,8 +2736,9 @@ const TOPO_SEED = {
     },
     {
       "id": "rig1",
+      "dev": "node-01",
       "x": 0.45,
-      "y": 0.36,
+      "y": 0.39,
       "sz": 3,
       "gig": true,
       "accent": "violet",
@@ -2711,8 +2748,9 @@ const TOPO_SEED = {
     },
     {
       "id": "rig2",
+      "dev": "node-02",
       "x": 0.45,
-      "y": 0.54,
+      "y": 0.57,
       "sz": 3,
       "gig": true,
       "accent": "violet",
@@ -2723,7 +2761,7 @@ const TOPO_SEED = {
     {
       "id": "rep",
       "x": 0.45,
-      "y": 0.76,
+      "y": 0.77,
       "sz": 3,
       "dim": true,
       "accent": "sky",
@@ -2733,8 +2771,9 @@ const TOPO_SEED = {
     },
     {
       "id": "dfly",
+      "dev": "mobile-01",
       "x": 0.63,
-      "y": 0.1,
+      "y": 0.08,
       "sz": 4,
       "accent": "amber",
       "title": "HP Dragonfly",
@@ -2742,9 +2781,21 @@ const TOPO_SEED = {
       "note": "AX5400 Wi-Fi"
     },
     {
-      "id": "ezpad",
+      "id": "xzx",
+      "dev": "mobile-02",
       "x": 0.63,
-      "y": 0.34,
+      "y": 0.3,
+      "sz": 4,
+      "accent": "amber",
+      "title": "玄智星墨影",
+      "sub": "7840H · 780M",
+      "note": "AX5400 Wi-Fi"
+    },
+    {
+      "id": "ezpad",
+      "dev": "jumper-ezpad-8",
+      "x": 0.63,
+      "y": 0.52,
       "sz": 4,
       "accent": "amber",
       "title": "EZpad 8",
@@ -2753,8 +2804,9 @@ const TOPO_SEED = {
     },
     {
       "id": "spin",
+      "dev": "acer-chromebook-spin",
       "x": 0.63,
-      "y": 0.58,
+      "y": 0.74,
       "sz": 4,
       "dim": true,
       "accent": "amber",
@@ -2763,19 +2815,10 @@ const TOPO_SEED = {
       "note": "AX5400 Wi-Fi"
     },
     {
-      "id": "xzx",
-      "x": 0.63,
-      "y": 0.82,
-      "sz": 4,
-      "accent": "amber",
-      "title": "玄智星墨影",
-      "sub": "7840H · 780M",
-      "note": "AX5400 Wi-Fi"
-    },
-    {
       "id": "x9",
+      "dev": "oppo-find-x9",
       "x": 0.78,
-      "y": 0,
+      "y": 0.03,
       "sz": 4,
       "accent": "rose",
       "title": "Find X9 Pro",
@@ -2784,8 +2827,9 @@ const TOPO_SEED = {
     },
     {
       "id": "r8",
+      "dev": "sharp-aquos-r8",
       "x": 0.78,
-      "y": 0.13,
+      "y": 0.16,
       "sz": 4,
       "accent": "rose",
       "title": "AQUOS R8 Pro",
@@ -2794,8 +2838,9 @@ const TOPO_SEED = {
     },
     {
       "id": "xp5",
+      "dev": "sony-xperia-5",
       "x": 0.78,
-      "y": 0.26,
+      "y": 0.29,
       "sz": 4,
       "accent": "rose",
       "title": "Xperia 5 III",
@@ -2804,8 +2849,9 @@ const TOPO_SEED = {
     },
     {
       "id": "g7",
+      "dev": "lg-g7-thinq",
       "x": 0.78,
-      "y": 0.39,
+      "y": 0.42,
       "sz": 4,
       "accent": "rose",
       "title": "LG G7 ThinQ",
@@ -2814,8 +2860,9 @@ const TOPO_SEED = {
     },
     {
       "id": "pad",
+      "dev": "lenovo-xiaoxin-pad",
       "x": 0.78,
-      "y": 0.52,
+      "y": 0.55,
       "sz": 4,
       "accent": "rose",
       "title": "小新 Pad Pro 12.7",
@@ -2824,8 +2871,9 @@ const TOPO_SEED = {
     },
     {
       "id": "wish",
+      "dev": "sharp-aquos-wish3",
       "x": 0.78,
-      "y": 0.65,
+      "y": 0.68,
       "sz": 4,
       "accent": "rose",
       "title": "AQUOS wish3",
@@ -2834,8 +2882,9 @@ const TOPO_SEED = {
     },
     {
       "id": "paw",
+      "dev": "acer-pawbo-p52",
       "x": 0.78,
-      "y": 0.78,
+      "y": 0.81,
       "sz": 4,
       "dim": true,
       "accent": "rose",
