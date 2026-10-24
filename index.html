@@ -88,7 +88,11 @@
       <div class="palette__bar">
         <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>
         <input id="q" type="text" role="combobox" aria-expanded="true" aria-controls="paletteList" aria-autocomplete="list"
-          placeholder="搜索型号、芯片、规格、年代…" autocomplete="off" spellcheck="false" enterkeyhint="go">
+          placeholder="搜索型号、芯片、规格、状态、年代…" autocomplete="off" spellcheck="false" enterkeyhint="go">
+        <span class="palette__count mono" id="paletteCount" aria-live="polite"></span>
+        <button type="button" class="palette__clear" id="qClear" hidden title="清空搜索词" aria-label="清空搜索词">
+          <svg class="ico" aria-hidden="true"><use href="#i-x"/></svg>
+        </button>
         <kbd class="mono">Esc</kbd>
       </div>
       <div class="palette__list" id="paletteList" role="listbox" aria-label="搜索结果"></div>

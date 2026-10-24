@@ -27,7 +27,7 @@
     laptops: ['CPU', 'RAM/ROM', '屏幕', '显卡', '机身'],
     mobile: ['CPU', 'RAM/ROM', '屏幕', '摄像头', '重量', '其他']
   };
-  const TOPO_KEY = 'ga.topo.v6';
+  const TOPO_KEY = 'ga.topo.v7';
   const THEMES = [
     { id: 'ember', name: '熔岩', a: '#ff8a3d', b: '#ffc46b', bg: '#0d0b09' },
     { id: 'acid', name: '酸性', a: '#c6f432', b: '#5eead4', bg: '#08090a' },
@@ -70,6 +70,8 @@
   const BY_ID = new Map();
   DEVICES.forEach(d => BY_ID.set(d.id, d));
   ERAS.forEach(e => BY_ID.set(e.id, e));
+  const DEV_TO_TOPO = new Map();
+  TOPO_SEED.nodes.forEach(n => { if (n.dev) DEV_TO_TOPO.set(n.dev, n.id); });
   const BY_TAB = {};
   TABS.forEach(t => { BY_TAB[t.id] = t.id === 'history' ? ERAS : DEVICES.filter(d => d.tab === t.id); });
   // 序号：设备在所属分区里的位置（01、02…），编年史用 P8、P7…
@@ -117,12 +119,37 @@
   }
 
   // ---------- 文本渲染 ----------
-  // 规格值里的数字+单位加粗，方便扫读；先切分再逐段转义，不会破坏实体
-  const NUM_RE = /\d+(?:\.\d+)?\s?(?:GB\/s|MB\/s|Gbps|GHz|MHz|mAh|TBW|TB|GB|MB|nm|mm|Hz|W|V|g|核|线程)(?![A-Za-z])/g;
-  function em(s) {
+  // 规格值里的数字+单位加粗，并自动将跨设备引用（如 NODE-01、MOBILE-01、ZX6-CU5DA 等）渲染为可点击内链
+  const XREF_MAP = new Map([
+    ['NODE-01', 'node-01'], ['NODE-02', 'node-02'], ['NODE-03', 'node-03'], ['NODE-04', 'node-04'],
+    ['Node 01', 'node-01'], ['Node 02', 'node-02'], ['Node 03', 'node-03'], ['Node 04', 'node-04'],
+    ['MOBILE-01', 'mobile-01'], ['MOBILE-02', 'mobile-02'],
+    ['MSI GT73EVR 7RD Titan', 'msi-gt73evr-7rd'], ['MSI GT73EVR', 'msi-gt73evr-7rd'],
+    ['神舟战神 ZX6-CU5DA', 'zx6-cu5da'], ['神舟 ZX6-CU5DA', 'zx6-cu5da'], ['战神 ZX6-CU5DA', 'zx6-cu5da'], ['ZX6-CU5DA', 'zx6-cu5da'],
+    ['攀升 暴风龙 S2', 'ipason-s2-14-0'], ['暴风龙 S2', 'ipason-s2-14-0'],
+    ['DELL Latitude 7410 2-in-1', 'dell-latitude-7410'], ['Latitude 7410', 'dell-latitude-7410'],
+    ['Acer Chromebook Spin 13', 'acer-chromebook-spin'], ['Acer Spin 13', 'acer-chromebook-spin'],
+    ['OPPO Find X9 Pro 5G', 'oppo-find-x9'], ['Find X9 Pro', 'oppo-find-x9'],
+    ['nubia Z60S Pro', 'nubia-z60s-pro'], ['Z60S Pro', 'nubia-z60s-pro'],
+    ['铨兴 酷芯客 P300', 'quanxing-p300-512gb'], ['铨兴 P300', 'quanxing-p300-512gb'],
+    ['蜗牛星际', 'star-snail-4-bay'], ['Quadro P400', 'quadro-p400-2gb'], ['R7 240', 'sapphire-radeon-r7']
+  ]);
+  const XREF_ALT = [...XREF_MAP.keys()].sort((a, b) => b.length - a.length).map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+  const NUM_SRC = '\\d+(?:\\.\\d+)?\\s?(?:GT\\/s|MT\\/s|GB\\/s|MB\\/s|Gbps|Gb\\/s|Mbit\\/s|TFLOPS|TOPS|CUDA|RPM|GHz|MHz|kHz|mAh|TBW|TB|GB|Gb|MB|KB|Wh|nits?|MP|PPI|nm|mm|µm|ms|Hz|kg|dBV\\/Pa|dBi|dB|Vrms|gf|W|V|g|Ω|层|核|线程|相)(?![A-Za-z])';
+  const TOKEN_RE = new RegExp(`(${XREF_ALT})|(${NUM_SRC})`, 'g');
+  function em(s, selfId) {
     const raw = String(s == null ? '' : s);
     let out = '', last = 0;
-    raw.replace(NUM_RE, (m, at) => { out += esc(raw.slice(last, at)) + `<b>${esc(m)}</b>`; last = at + m.length; return m; });
+    raw.replace(TOKEN_RE, (m, xref, num, at) => {
+      out += esc(raw.slice(last, at));
+      const tid = xref && XREF_MAP.get(xref);
+      const target = tid && tid !== selfId && BY_ID.get(tid);
+      if (target) out += `<button type="button" class="xref" data-xref="${esc(tid)}" title="跳转到设备档案：${esc(target.title)}">${esc(m)}</button>`;
+      else if (num) out += `<b>${esc(m)}</b>`;
+      else out += esc(m);
+      last = at + m.length;
+      return m;
+    });
     return out + esc(raw.slice(last));
   }
   // 命令面板里高亮搜索词
@@ -146,7 +173,7 @@
     const hi = Math.max(Math.floor(Math.max(...ERAS.map(e => e.b))), new Date().getFullYear());
     return [
       { label: '现役计算核心', value: sum('cores'), dec: 0, unit: 'CORES', c: 'var(--pri)', hint: `${act.filter(d => d.cores).length} 台节点 / 笔电` },
-      { label: '在线 / 近线存储', value: sum('storageGB') / 1000, dec: 1, unit: 'TB', c: 'var(--green)', hint: '按标称容量合计' },
+      { label: '在线 / 近线存储', value: sum('storageGB') / 1000, dec: 1, unit: 'TB', c: 'var(--green)', hint: `${act.filter(d => d.storageGB).length} 台节点标称合计` },
       { label: '现役独显显存', value: sum('vramGB'), dec: 0, unit: 'GB', c: 'var(--pri-2)', hint: `${act.filter(d => d.vramGB).length} 张独显` },
       { label: '装机跨度', value: hi - lo, dec: 0, unit: 'YEARS', c: 'var(--amber)', hint: `${lo} – ${hi}` }
     ];
@@ -190,10 +217,13 @@
     }).join('');
   }
   function renderStatus() {
-    const segs = distOf(DEVICES).map(([s, n]) => `<span class="status__seg" data-st="${s}"><i class="led"></i>${esc(stLabel(s))} ${n}</span>`).join('');
+    const segs = distOf(DEVICES).map(([s, n]) => {
+      const pressed = isListTab(state.tab) && state.status === s;
+      return `<button type="button" class="status__seg" data-st-jump="${s}" data-st="${s}" aria-pressed="${pressed}" title="点击筛选「${esc(stLabel(s))}」设备"><i class="led"></i>${esc(stLabel(s))} ${n}</button>`;
+    }).join('');
     $('#status').innerHTML = `<span class="status__seg status__on" data-st="active"><i class="led"></i>LINK OK</span>
       <span class="status__seg">${DEVICES.length} DEVICES · ${ERAS.length} ERAS</span>${segs}
-      <span class="status__keys"><span><kbd>Ctrl K</kbd>搜索</span><span><kbd>1-7</kbd>分区</span><span><kbd>J</kbd><kbd>K</kbd>上下</span><span><kbd>E</kbd>全规格</span><span><kbd>T</kbd>配色</span></span>`;
+      <span class="status__keys"><button type="button" id="statusSearch"><kbd>Ctrl K</kbd>搜索</button><span><kbd>1-7</kbd>分区</span><span><kbd>J</kbd><kbd>K</kbd>上下</span><button type="button" id="statusMode"><kbd>E</kbd>全规格</button><button type="button" id="statusTheme"><kbd>T</kbd>配色</button></span>`;
   }
   function tickClock() {
     const el = $('#clock');
@@ -270,8 +300,10 @@
       <h2 class="list__title">${esc(t.label)}</h2><div class="list__count">${esc(count)}</div></div>${seg}</div>${extra}</div>`;
   }
   // ---------- 档案（检视器与全规格模式共用） ----------
-  const specVal = v => Array.isArray(v) ? `<ol>${v.map(i => `<li>${em(i)}</li>`).join('')}</ol>` : em(v);
-  const actsHTML = () => `<span class="dossier__acts">
+  const specVal = (v, selfId) => Array.isArray(v) ? `<ol>${v.map(i => `<li>${em(i, selfId)}</li>`).join('')}</ol>` : em(v, selfId);
+  const actsHTML = d => `<span class="dossier__acts">
+    ${d && DEV_TO_TOPO.has(d.id) ? `<button type="button" class="ibtn" data-act="topo" title="在拓扑图中定位" aria-label="在拓扑图中定位">${icon('topology')}</button>` : ''}
+    <button type="button" class="ibtn" data-act="inspect" title="在检视器中打开" aria-label="在检视器中打开">${icon('rows')}</button>
     <button type="button" class="ibtn" data-act="link" title="复制链接" aria-label="复制链接">${icon('link')}</button>
     <button type="button" class="ibtn" data-act="specs" title="复制全文" aria-label="复制全文">${icon('copy')}</button></span>`;
   function dossierHTML(d, inStack) {
@@ -281,11 +313,11 @@
     if (d.kind === 'era') {
       return `<article class="dossier" data-id="${d.id}" data-ac="${accentOf(d)}">
         <span class="dossier__wm" aria-hidden="true">${NUM.get(d.id)}</span>
-        <div class="dossier__tags"><span class="tag tag--ac">PERIOD ${d.p}</span><span class="tag">${esc(d.h.tag)}</span>${inStack ? actsHTML() : ''}</div>
+        <div class="dossier__tags"><span class="tag tag--ac">PERIOD ${d.p}</span><span class="tag">${esc(d.h.tag)}</span>${inStack ? actsHTML(d) : ''}</div>
         <div class="era-range">${esc(d.from)} <em>→</em> ${esc(d.to)}</div>
         ${d.note ? `<p class="era-note">${esc(d.note)}</p>` : ''}
         <${H} class="era-title"${tid}>${esc(d.h.title)}</${H}>
-        <div class="era-body">${d.h.body.map(p => `<p>${em(p)}</p>`).join('')}</div>
+        <div class="era-body">${d.h.body.map(p => `<p>${em(p, d.id)}</p>`).join('')}</div>
       </article>`;
     }
     const specs = specsOf(d);
@@ -293,12 +325,12 @@
     return `<article class="dossier" data-id="${esc(d.id)}" data-ac="${accentOf(d)}">
       <span class="dossier__wm" aria-hidden="true">${NUM.get(d.id)}</span>
       <div class="dossier__tags"><span class="tag tag--st" data-st="${d.status}"><i class="led"></i>${esc(stLabel(d.status))}</span>
-        ${d.flag ? `<span class="tag tag--ac">${esc(d.flag)}</span>` : ''}${d.badge ? `<span class="tag">${esc(d.badge)}</span>` : ''}${inStack ? actsHTML() : ''}</div>
+        ${d.flag ? `<span class="tag tag--ac">${esc(d.flag)}</span>` : ''}${d.badge ? `<span class="tag">${esc(d.badge)}</span>` : ''}${inStack ? actsHTML(d) : ''}</div>
       <${H} class="dossier__title"${tid}>${esc(d.title)}</${H}>
-      ${d.sub ? `<p class="dossier__sub">${em(d.sub)}</p>` : ''}
+      ${d.sub ? `<p class="dossier__sub">${em(d.sub, d.id)}</p>` : ''}
       <div class="sheet-hd">SPEC SHEET<span>${specs.length} 项</span></div>
-      <dl class="specsheet">${specs.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${specVal(v)}</dd>`).join('')}</dl>
-      ${notes.length ? `<div class="callouts">${notes.map(([k, v]) => `<p class="callout"><small>${k}</small>${em(v)}</p>`).join('')}</div>` : ''}
+      <dl class="specsheet">${specs.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${specVal(v, d.id)}</dd>`).join('')}</dl>
+      ${notes.length ? `<div class="callouts">${notes.map(([k, v]) => `<p class="callout"><small>${k}</small>${em(v, d.id)}</p>`).join('')}</div>` : ''}
       <div class="dossier__meta"><span>${esc(t ? t.label : '')}</span>${d.group ? `<span>${esc(d.group)}</span>` : ''}<span>ID ${esc(d.id)}</span></div>
     </article>`;
   }
@@ -355,6 +387,7 @@
       <span class="insp__crumb">${d ? `<b>${esc(NUM.get(d.id))}</b> / ${pad2(list.length)} · ${esc(t.name)}` : 'INSPECTOR'}</span>
       <button type="button" class="ibtn" data-act="prev" aria-label="上一项" title="上一项（K）"${i > 0 ? '' : ' disabled'}>${icon('prev')}</button>
       <button type="button" class="ibtn" data-act="next" aria-label="下一项" title="下一项（J）"${i >= 0 && i < list.length - 1 ? '' : ' disabled'}>${icon('next')}</button>
+      ${d && DEV_TO_TOPO.has(d.id) ? `<button type="button" class="ibtn" data-act="topo" title="在拓扑图中定位该节点">${icon('topology')}<span class="ibtn__t">拓扑定位</span></button>` : ''}
       ${d ? `<button type="button" class="ibtn ibtn--pri" data-act="link" title="复制本条链接">${icon('link')}<span class="ibtn__t">复制链接</span></button>
       <button type="button" class="ibtn" data-act="specs" title="复制${d.kind === 'era' ? '全文' : '全部规格'}">${icon('copy')}<span class="ibtn__t">${d.kind === 'era' ? '复制全文' : '复制规格'}</span></button>` : ''}
     </div>`;
@@ -418,7 +451,7 @@
     state.status = 'all';
     // persist 放进 draw：选中项要等 renderStage 里的 ensureSel 才确定，URL 才能带上 ?d=
     const draw = () => {
-      renderSectors(); renderStage();
+      renderSectors(); renderStatus(); renderStage();
       if (fromSectors) { const b = $(`.sector[data-tab="${id}"]`); if (b) b.focus(); }
       persist(opts.push !== false);
     };
@@ -458,6 +491,14 @@
     const rowFocused = document.activeElement && document.activeElement.matches('.row');
     select(list[n].id, { focus: rowFocused && !isOpen() });
   }
+  let pendingPing = null;
+  function focusTopoNode(devId) {
+    const nodeId = DEV_TO_TOPO.get(devId);
+    if (!nodeId) return;
+    pendingPing = nodeId;
+    if (state.tab !== 'topology') setTab('topology');
+    else renderStage();
+  }
   function act(name, el) {
     const host = el && el.closest('.dossier[data-id]');
     const d = BY_ID.get(host ? host.dataset.id : state.sel[state.tab]);
@@ -465,6 +506,8 @@
     if (name === 'next') return move(1);
     if (name === 'close') return closeOverlay();
     if (!d) return;
+    if (name === 'topo') return focusTopoNode(d.id);
+    if (name === 'inspect') return go(d.tab, d.id);
     if (name === 'link') copy(location.href.split('#')[0] + `#${d.tab}?d=${encodeURIComponent(d.id)}`, '链接已复制');
     if (name === 'specs') copy(plainOf(d), d.kind === 'era' ? '全文已复制' : '规格已复制');
   }
@@ -494,11 +537,15 @@
   function topologyHTML() {
     const t = tabOf('topology');
     const lg = (k, label, dash) => `<span><i class="${dash ? 'dash' : ''}" style="--c:${LINK_C[k]}"></i>${label}</span>`;
-    return `<section class="pane topo" aria-label="${esc(t.label)}">
+    return `<section class="pane topo" id="topoPane" aria-label="${esc(t.label)}">
       <div class="topo__hd"><div><div class="list__idx">SECTOR ${t.idx} / ${pad2(TABS.length)}</div>
         <h2 class="list__title">${esc(t.label)}</h2>
-        <p class="topo__desc">T7 OpenWrt 做主 · 8 口交换机下联台式 · AX5400 供手机笔电 · T7 中继与 Pawbo 暂闲置<span class="topo-hint"> · 拖节点 / 拉线 / 点线删除</span></p></div>
+        <p class="topo__desc">T7 OpenWrt 做主 · 8 口交换机下联台式 · AX5400 供手机笔电 · T7 中继与 Pawbo 暂闲置<span class="topo-hint"> · 拖节点 / 拉线 / 点线删除 / 双击节点看档案</span></p></div>
         <div class="legend">${lg('wan', '上行')}${lg('lan', '有线 1G')}${lg('wifi', '无线', 1)}${lg('idle', '闲置', 1)}${lg('user', '手拉')}
+          <div class="seg-ctl topo-view-ctl" role="group" aria-label="拓扑视图">
+            <button type="button" data-topo-v="list" aria-pressed="true">${icon('rows')}<span>链路表</span></button>
+            <button type="button" data-topo-v="canvas" aria-pressed="false">${icon('topology')}<span>画布</span></button>
+          </div>
           <button type="button" class="ibtn" id="topoReset" style="border-color:var(--line-2)">${icon('reset')}<span>重置布局</span></button></div>
       </div>
       <div class="topo-list" id="topoList" role="list" aria-label="网络连接关系"></div>
@@ -509,7 +556,7 @@
   }
 
   function bindTopology() {
-    const canvas = $('#topoCanvas'), svg = $('#topoWires'), box = $('#topoNodes'), list = $('#topoList');
+    const pane = $('#topoPane'), canvas = $('#topoCanvas'), svg = $('#topoWires'), box = $('#topoNodes'), list = $('#topoList');
     if (!canvas) return;
     const seed = () => ({ nodes: TOPO_SEED.nodes.map(n => Object.assign({}, n)), links: TOPO_SEED.links.map(l => Object.assign({}, l)) });
     let model = seed();
@@ -527,17 +574,24 @@
     } catch (e) { model = seed(); }
     const save = () => store.set(TOPO_KEY, JSON.stringify({ nodes: model.nodes.map(n => ({ id: n.id, x: n.x, y: n.y })), links: model.links }));
     const NAMES = new Map(model.nodes.map(n => [n.id, n.title]));
+    const DEVS = new Map(model.nodes.filter(n => n.dev && BY_ID.has(n.dev)).map(n => [n.id, n.dev]));
     const nameOf = id => NAMES.get(id) || id;
 
-    box.innerHTML = model.nodes.map(n => `<div class="node sz${n.sz || 3}${n.dim ? ' dim' : ''}${n.gig ? ' gig' : ''}" data-id="${esc(n.id)}" data-ac="${NODE_AC[n.accent] || 'slate'}" style="left:${(n.x * 100).toFixed(2)}%;top:${(n.y * 100).toFixed(2)}%">
+    box.innerHTML = model.nodes.map(n => {
+      const dev = n.dev && BY_ID.get(n.dev);
+      return `<div class="node sz${n.sz || 3}${n.dim ? ' dim' : ''}${n.gig ? ' gig' : ''}${dev ? ' has-dev' : ''}" data-id="${esc(n.id)}"${dev ? ` data-dev="${esc(dev.id)}"` : ''} data-ac="${NODE_AC[n.accent] || 'slate'}" style="left:${(n.x * 100).toFixed(2)}%;top:${(n.y * 100).toFixed(2)}%">
         ${n.gig ? '<span class="gig">1G</span>' : ''}
+        ${dev ? `<button type="button" class="node__go" data-go-dev="${esc(dev.id)}" title="查看设备档案：${esc(dev.title)}" aria-label="查看 ${esc(n.title)} 设备档案">${icon('arrow')}</button>` : ''}
         <div class="node__hd"><div class="node__t">${esc(n.title)}</div><div class="node__s">${esc(n.sub)}</div></div>
         <p class="node__n">${esc(n.note)}</p>
         <button type="button" class="port in" data-side="in" aria-label="${esc(n.title)} 输入端口"></button>
         <button type="button" class="port out" data-side="out" aria-label="${esc(n.title)} 输出端口"></button>
-      </div>`).join('');
+      </div>`;
+    }).join('');
     const ports = new Map();
+    const nodeEls = new Map();
     box.querySelectorAll('.node').forEach(el => {
+      nodeEls.set(el.dataset.id, el);
       ports.set(el.dataset.id + ':in', $('.port.in', el));
       ports.set(el.dataset.id + ':out', $('.port.out', el));
     });
@@ -559,10 +613,14 @@
       }).join('');
       if (draft) svg.appendChild(draft.el);
     }
+    const endLabel = id => {
+      const devId = DEVS.get(id);
+      return devId ? `<button type="button" class="link-row__dev" data-go-dev="${esc(devId)}" title="查看 ${esc(nameOf(id))} 档案">${esc(nameOf(id))}</button>` : `<b>${esc(nameOf(id))}</b>`;
+    };
     function drawList() {
       list.innerHTML = model.links.map((l, i) => `<div class="link-row" role="listitem">
         <span class="link-row__dot" style="--c:${LINK_C[l.kind]}"></span>
-        <span class="link-row__names"><b>${esc(nameOf(l.a))}</b>${icon('arrow')}<b>${esc(nameOf(l.b))}</b></span>
+        <span class="link-row__names">${endLabel(l.a)}${icon('arrow')}${endLabel(l.b)}</span>
         <span class="link-row__kind">${esc(LINK_KIND[l.kind] || '连接')}</span>
         <button type="button" class="icon-btn" data-cut="${i}" aria-label="拆除 ${esc(nameOf(l.a))} 到 ${esc(nameOf(l.b))} 的连接">${icon('unlink')}</button>
       </div>`).join('');
@@ -582,11 +640,60 @@
       save(); draw(); toast('已拆线');
     };
     const clearSrc = () => box.querySelectorAll('.port.src').forEach(p => p.classList.remove('src'));
+    // 悬停节点或连线时高亮关联拓扑路径
+    const clearTrace = () => {
+      canvas.classList.remove('trace');
+      box.querySelectorAll('.node.hi').forEach(el => el.classList.remove('hi'));
+      svg.querySelectorAll('path.hi').forEach(el => el.classList.remove('hi'));
+    };
+    canvas.addEventListener('mouseover', e => {
+      if (drag || draft) return;
+      const node = e.target.closest('.node');
+      const wire = !node && e.target.closest('path[data-i]');
+      if (!node && !wire) { clearTrace(); return; }
+      clearTrace();
+      canvas.classList.add('trace');
+      if (node) {
+        const id = node.dataset.id;
+        node.classList.add('hi');
+        model.links.forEach((l, i) => {
+          if (l.a === id || l.b === id) {
+            const p = svg.querySelector(`path[data-i="${i}"]`);
+            if (p) p.classList.add('hi');
+            const peer = nodeEls.get(l.a === id ? l.b : l.a);
+            if (peer) peer.classList.add('hi');
+          }
+        });
+      } else if (wire) {
+        const l = model.links[+wire.dataset.i];
+        wire.classList.add('hi');
+        if (l) {
+          const na = nodeEls.get(l.a), nb = nodeEls.get(l.b);
+          if (na) na.classList.add('hi');
+          if (nb) nb.classList.add('hi');
+        }
+      }
+    });
+    canvas.addEventListener('mouseleave', clearTrace);
+    box.addEventListener('dblclick', e => {
+      if (e.target.closest('.port')) return;
+      const node = e.target.closest('.node[data-dev]');
+      if (node) { const d = BY_ID.get(node.dataset.dev); if (d) go(d.tab, d.id); }
+    });
     svg.addEventListener('click', e => { const p = e.target.closest('path[data-i]'); if (p) cut(+p.dataset.i); });
     list.addEventListener('click', e => { const b = e.target.closest('[data-cut]'); if (b) cut(+b.dataset.cut); });
+    pane.addEventListener('click', e => {
+      const vb = e.target.closest('[data-topo-v]');
+      if (!vb) return;
+      const v = vb.dataset.topoV;
+      pane.dataset.topoView = v;
+      pane.querySelectorAll('[data-topo-v]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.topoV === v)));
+      if (v === 'canvas') requestAnimationFrame(drawWires);
+    });
     let drag = null, keyFrom = null;
     const point = e => (e.touches && e.touches[0]) || (e.changedTouches && e.changedTouches[0]) || e;
     const onDown = e => {
+      if (e.target.closest('.node__go')) return;
       const port = e.target.closest('.port');
       const node = e.target.closest('.node');
       if (!node) return;
@@ -665,6 +772,21 @@
       renderStage();
       toast('已重置');
     });
+    if (pendingPing) {
+      const nid = pendingPing;
+      pendingPing = null;
+      pane.dataset.topoView = 'canvas';
+      pane.querySelectorAll('[data-topo-v]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.topoV === 'canvas')));
+      requestAnimationFrame(() => {
+        drawWires();
+        const target = nodeEls.get(nid);
+        if (target) {
+          target.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'center', inline: 'center' });
+          target.classList.add('ping');
+          setTimeout(() => target.classList.remove('ping'), 3200);
+        }
+      });
+    }
     draw();
   }
   // ---------- Toast / 复制 ----------
@@ -696,16 +818,17 @@
   }
 
   // ---------- 命令面板（Ctrl/⌘ K 或 /）：跨分区搜设备、时期、分区与操作 ----------
-  const pal = $('#palette'), input = $('#q'), palList = $('#paletteList');
+  const pal = $('#palette'), input = $('#q'), palList = $('#paletteList'), palCount = $('#paletteCount'), qClear = $('#qClear');
   let results = [], cursor = 0, palFrom = null;
   const specText = v => Array.isArray(v) ? v.join(' ') : v;
   const HAY = new WeakMap();
   function hay(d) {
     let h = HAY.get(d);
     if (h === undefined) {
+      const tb = tabOf(d.tab);
       h = (d.kind === 'era'
-        ? [d.h.period, d.h.tag, d.h.title, ...d.h.body]
-        : [d.title, d.sub, d.badge, d.flag, d.tags, d.footL, d.footR, d.group, ...(d.specs || []).map(([k, v]) => k + ' ' + specText(v))]
+        ? [d.id, d.h.period, d.h.tag, d.h.title, ...d.h.body]
+        : [d.id, d.title, d.sub, d.badge, d.flag, d.tags, d.footL, d.footR, d.group, stLabel(d.status), tb && tb.name, tb && tb.label, ...(d.specs || []).map(([k, v]) => k + ' ' + specText(v))]
       ).join(' ').toLowerCase();
       HAY.set(d, h);
     }
@@ -728,14 +851,36 @@
     { label: '复制当前条目链接', sub: '深链直达检视器', icon: 'link', run: () => act('link') },
     { label: '重置拓扑布局', sub: '恢复默认节点位置与连线', icon: 'reset', run: () => { store.del(TOPO_KEY); if (state.tab === 'topology') renderStage(); else go('topology'); toast('已重置'); } }
   ];
+  function setQuery(q) {
+    input.value = q;
+    state.q = q.trim();
+    cursor = 0;
+    renderPalette();
+    palList.scrollTop = 0;
+    input.focus();
+  }
   function buildResults() {
     const toks = tokens();
     const out = [];
     const tabsHit = TABS.filter(t => !toks.length || hit(`${t.name} ${t.label} ${t.short} ${t.id}`.toLowerCase(), toks));
     tabsHit.forEach(t => out.push({ group: '分区', icon: TAB_ICON[t.id], title: `${t.idx} · ${t.label}`, sub: t.id === 'topology' ? `${TOPO_SEED.nodes.length} 节点` : `${BY_TAB[t.id].length} 条`, run: () => go(t.id) }));
+    if (!toks.length) {
+      STATUS_ORDER.filter(s => STATUS_COUNTS[s]).forEach(s => {
+        out.push({
+          group: '按状态检索',
+          icon: 'search',
+          title: `筛选「${stLabel(s)}」设备`,
+          sub: `全库共 ${STATUS_COUNTS[s]} 台处于${stLabel(s)}状态`,
+          st: s,
+          right: `${STATUS_COUNTS[s]} 台`,
+          keepOpen: true,
+          run: () => setQuery(stLabel(s))
+        });
+      });
+    }
     if (toks.length) {
       const score = d => { const t = titleOf(d).toLowerCase(); return t.includes(toks[0]) ? 0 : (d.badge || '').toLowerCase().includes(toks[0]) ? 1 : 2; };
-      const devs = DEVICES.filter(d => hit(hay(d), toks)).sort((a, b) => score(a) - score(b)).slice(0, 40);
+      const devs = DEVICES.filter(d => hit(hay(d), toks)).sort((a, b) => score(a) - score(b)).slice(0, 50);
       devs.forEach(d => out.push({ group: '设备', icon: TAB_ICON[d.tab], title: d.title, sub: snippetOf(d, toks), st: d.status, right: `${tabOf(d.tab).name} · ${stLabel(d.status)}`, run: () => go(d.tab, d.id) }));
       ERAS.filter(e => hit(hay(e), toks)).forEach(e => out.push({ group: '编年史', icon: 'timeline', title: `P${e.p} · ${e.h.title}`, sub: snippetOf(e, toks), right: `${e.from} – ${e.to}`, run: () => go('history', e.id) }));
     }
@@ -745,6 +890,8 @@
   function renderPalette() {
     results = buildResults();
     cursor = Math.min(cursor, Math.max(0, results.length - 1));
+    if (qClear) qClear.hidden = !input.value;
+    if (palCount) palCount.textContent = state.q ? `${results.length} 项命中` : `${DEVICES.length} 台设备`;
     if (!results.length) { palList.innerHTML = `<div class="pal-empty">没有匹配 “${esc(state.q)}” 的设备或时期</div>`; input.removeAttribute('aria-activedescendant'); return; }
     let g = '';
     palList.innerHTML = results.map((r, i) => {
@@ -765,7 +912,11 @@
   }
   const palOpen = () => !pal.hidden;
   function openPalette(q) {
-    if (palOpen()) { input.select(); return; }
+    if (palOpen()) {
+      if (typeof q === 'string') setQuery(q);
+      else input.select();
+      return;
+    }
     palFrom = document.activeElement;
     pal.hidden = false;
     document.body.classList.add('lock');
@@ -786,7 +937,7 @@
   function runResult(i) {
     const r = results[i];
     if (!r) return;
-    closePalette(false);
+    if (!r.keepOpen) closePalette(false);
     r.run();
   }
   let palT = 0;
@@ -801,12 +952,41 @@
     else if (e.key === 'Tab') e.preventDefault(); // 面板里只有一个输入框，Tab 不外逃
   });
   palList.addEventListener('mousemove', e => { const it = e.target.closest('[data-run]'); if (it && +it.dataset.run !== cursor) setCursor(+it.dataset.run); });
+
   // ---------- 全局事件 ----------
   document.addEventListener('click', e => {
+    if (e.target.closest('#qClear')) { setQuery(''); return; }
     const run = e.target.closest('.palette [data-run]');
     if (run) { runResult(+run.dataset.run); return; }
     if (e.target.closest('.palette [data-close]')) { closePalette(); return; }
-    if (e.target.closest('#cmdOpen')) { openPalette(); return; }
+    if (e.target.closest('#cmdOpen, #statusSearch')) { openPalette(); return; }
+    if (e.target.closest('#statusMode')) { setMode(); return; }
+    if (e.target.closest('#statusTheme')) { cycleTheme(); return; }
+    const xref = e.target.closest('[data-xref], [data-go-dev]');
+    if (xref) {
+      const id = xref.dataset.xref || xref.dataset.goDev;
+      const d = BY_ID.get(id);
+      if (d) {
+        go(d.tab, d.id);
+        toast(`已定位：${titleOf(d)}`);
+      }
+      return;
+    }
+    const stJump = e.target.closest('[data-st-jump]');
+    if (stJump) {
+      const st = stJump.dataset.stJump;
+      const inTabHas = isDeviceTab(state.tab) && BY_TAB[state.tab].some(d => d.status === st);
+      if (inTabHas) {
+        state.status = state.status === st ? 'all' : st;
+        renderStage();
+        renderStatus();
+        persist(false);
+        toast(state.status === 'all' ? '已恢复全部状态' : `当前分区筛选：${stLabel(st)}`);
+      } else {
+        openPalette(stLabel(st));
+      }
+      return;
+    }
     const th = e.target.closest('[data-theme-id]');
     if (th) { applyTheme(th.dataset.themeId, true); return; }
     const tab = e.target.closest('[data-tab]');
@@ -815,6 +995,7 @@
     if (chip) {
       state.status = chip.dataset.filter;
       renderStage();
+      renderStatus();
       const c = $(`[data-filter="${CSS.escape(chip.dataset.filter)}"]`, stage);
       if (c) c.focus();
       persist(false);
@@ -837,7 +1018,7 @@
       return;
     }
     if (palOpen()) return; // 面板自己处理方向键与回车
-    // 窄屏检视层：焦点陷阱
+    // 窄屏检视层：焦点陷阱与左右翻页
     if (k === 'Tab' && isOpen()) {
       const f = [...$('#insp').querySelectorAll('button:not([disabled]), a[href], input, [tabindex]:not([tabindex="-1"])')];
       if (!f.length) return;
@@ -848,6 +1029,11 @@
     }
     const typing = e.target.closest && e.target.closest('input, textarea, select, [contenteditable="true"]');
     if (typing || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (isOpen() && (k === 'ArrowLeft' || k === 'ArrowRight')) {
+      e.preventDefault();
+      move(k === 'ArrowLeft' ? -1 : 1);
+      return;
+    }
     if (k === '/') { e.preventDefault(); openPalette(); return; }
     if (k === 'e' || k === 'E') { setMode(); return; }
     if (k === 't' || k === 'T') { cycleTheme(); return; }
@@ -857,6 +1043,23 @@
     const n = parseInt(k, 10);
     if (n >= 1 && n <= TABS.length && !isOpen()) setTab(TABS[n - 1].id);
   });
+
+  // 窄屏检视抽屉：支持左右轻扫切换上一条 / 下一条档案
+  let touchX = 0, touchY = 0;
+  insp.addEventListener('touchstart', e => {
+    if (!isOpen() || e.touches.length !== 1) return;
+    touchX = e.touches[0].clientX;
+    touchY = e.touches[0].clientY;
+  }, { passive: true });
+  insp.addEventListener('touchend', e => {
+    if (!isOpen() || !touchX || e.changedTouches.length !== 1) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    const dy = e.changedTouches[0].clientY - touchY;
+    touchX = 0; touchY = 0;
+    if (Math.abs(dx) > 64 && Math.abs(dx) > Math.abs(dy) * 1.8) {
+      move(dx < 0 ? 1 : -1);
+    }
+  }, { passive: true });
 
   // 宽屏 ⇄ 窄屏切换：关闭覆盖层；进入宽屏时补上默认选中
   const onFlow = () => {
