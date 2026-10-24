@@ -865,14 +865,14 @@
     const tabsHit = TABS.filter(t => !toks.length || hit(`${t.name} ${t.label} ${t.short} ${t.id}`.toLowerCase(), toks));
     tabsHit.forEach(t => out.push({ group: '分区', icon: TAB_ICON[t.id], title: `${t.idx} · ${t.label}`, sub: t.id === 'topology' ? `${TOPO_SEED.nodes.length} 节点` : `${BY_TAB[t.id].length} 条`, run: () => go(t.id) }));
     if (!toks.length) {
-      STATUS_ORDER.filter(s => STATUS_COUNTS[s]).forEach(s => {
+      distOf(DEVICES).forEach(([s, n]) => {
         out.push({
           group: '按状态检索',
           icon: 'search',
           title: `筛选「${stLabel(s)}」设备`,
-          sub: `全库共 ${STATUS_COUNTS[s]} 台处于${stLabel(s)}状态`,
+          sub: `全库共 ${n} 台处于${stLabel(s)}状态`,
           st: s,
-          right: `${STATUS_COUNTS[s]} 台`,
+          right: `${n} 台`,
           keepOpen: true,
           run: () => setQuery(stLabel(s))
         });
@@ -975,7 +975,7 @@
     const stJump = e.target.closest('[data-st-jump]');
     if (stJump) {
       const st = stJump.dataset.stJump;
-      const inTabHas = isDeviceTab(state.tab) && BY_TAB[state.tab].some(d => d.status === st);
+      const inTabHas = isListTab(state.tab) && BY_TAB[state.tab].some(d => d.status === st);
       if (inTabHas) {
         state.status = state.status === st ? 'all' : st;
         renderStage();
@@ -1046,12 +1046,12 @@
 
   // 窄屏检视抽屉：支持左右轻扫切换上一条 / 下一条档案
   let touchX = 0, touchY = 0;
-  insp.addEventListener('touchstart', e => {
-    if (!isOpen() || e.touches.length !== 1) return;
+  stage.addEventListener('touchstart', e => {
+    if (!isOpen() || e.touches.length !== 1 || !e.target.closest('#insp')) return;
     touchX = e.touches[0].clientX;
     touchY = e.touches[0].clientY;
   }, { passive: true });
-  insp.addEventListener('touchend', e => {
+  stage.addEventListener('touchend', e => {
     if (!isOpen() || !touchX || e.changedTouches.length !== 1) return;
     const dx = e.changedTouches[0].clientX - touchX;
     const dy = e.changedTouches[0].clientY - touchY;
