@@ -131,7 +131,7 @@
     ['Acer Chromebook Spin 13', 'acer-chromebook-spin'], ['Acer Spin 13', 'acer-chromebook-spin'],
     ['OPPO Find X9 Pro 5G', 'oppo-find-x9'], ['Find X9 Pro', 'oppo-find-x9'],
     ['nubia Z60S Pro', 'nubia-z60s-pro'], ['Z60S Pro', 'nubia-z60s-pro'],
-    ['铨兴 酷芯客 P300', 'quanxing-p300-512gb'], ['铨兴 P300', 'quanxing-p300-512gb'],
+    ['铨兴 酷芯客 P300', 'node-02'], ['铨兴 P300', 'node-02'],
     ['蜗牛星际', 'star-snail-4-bay'], ['Quadro P400', 'quadro-p400-2gb'], ['R7 240', 'sapphire-radeon-r7']
   ]);
   const XREF_ALT = [...XREF_MAP.keys()].sort((a, b) => b.length - a.length).map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');

@@ -108,21 +108,21 @@ const DEVICES = [
     "cores": 8,
     "badge": "NODE-01 // 主力电竞与渲染台",
     "flag": "2K/4K 满血光追",
-    "title": "AMD Ryzen™ 7 5700X + ASUS Dual 雪豹 RTX™ 4070 SUPER EVO OC 12GB",
-    "sub": "ASRock B450M-HDV R1.0 极限压榨 / 内存 FCLK 1933MHz 1:1 同步超至 3866 C18",
-    "tags": "5700x 4070s 4070 super evo oc dual-rtx4070s-o12g-evo 雪豹 b450m 3866 vermeer ad104 s790e 幻隐 hs2000 orico y20 wd10ezex-08wn4a0",
+    "title": "AMD Ryzen™ 7 9800X3D + ASUS Dual 雪豹 RTX™ 4070 SUPER EVO OC 12GB",
+    "sub": "影驰 B650M Wi-Fi 黑武士 PLUS V2 · AM5 平台 · 96MB 3D V-Cache · DDR5-5600 双通道",
+    "tags": "9800x3d granite ridge zen5 am5 3d v-cache x3d 4070s 4070 super evo oc dual-rtx4070s-o12g-evo 雪豹 ad104 影驰 galax galaxy union b650m wi-fi plus v2 黑武士 金邦 geil ddr5 4800 5600 美光 micron rtl8851be wifi6 s790e 幻隐 hs2000 hys1tb orico y20 wd green sn3000 航嘉 jumper 750",
     "specs": [
       [
         "CPU",
-        "AMD Ryzen™ 7 5700X 8-Core 16-Thread Desktop Processor (Socket AM4, Vermeer B2, TSMC 7nm FinFET, 3.4–4.6GHz, 32MB L3, TDP 65W, 默频 PPT 76W)"
+        "AMD Ryzen™ 7 9800X3D 8-Core 16-Thread Desktop Processor (Socket AM5, Granite Ridge GNR-B0, Zen 5, 4nm CCD, 4.7–5.2GHz, L2 8×1MB, L3 96MB (2nd Gen 3D V-Cache), TDP 120W, OPN 100-000001084, 带 Radeon 核显；HWiNFO 实测最大睿频 5250MHz)"
       ],
       [
         "主板",
-        "ASRock (华擎) B450M-HDV R1.0 Micro-ATX Motherboard (AMD Promontory B450, 4+2相供电, Realtek ALC887 + RTL8111H, PCIe 3.0 x16, AGESA Combo-AM4v2 1.2.0.7)"
+        "GALAXY (影驰) B650M Wi-Fi 黑武士 PLUS V2 (UNION B650M Wi-Fi PLUS V2) Micro-ATX Motherboard (AMD B650 Promontory 21, 10+2+1 相供电, 1×PCIe 5.0 x16 + 1×PCIe 4.0 x1, 3×M.2 其中 2 个 PCIe 5.0 x4, 2.5GbE + Realtek RTL8851BE Wi-Fi 6, ITE IT8613, BIOS 5.35 / AGESA ComboAm5PI 1.3.0.1b 2026.07.03)"
       ],
       [
         "内存",
-        "Gloway (光威) 32GB (16GB × 2) DDR4 3600MHz CL18 (SK Hynix CJR/DJR 颗粒 → 手工超频至 DDR4 3866MHz CL18-22-22-42 1.40V, FCLK 1933MHz 1:1, VSOC 1.125V)"
+        "GeIL (金邦) 32GB (16GB × 2) DDR5-4800 CL40-40-40-77 1.1V UDIMM (美光颗粒, 2025 第 39 周, EXPO / XMP 3.0) → 实际运行 DDR5-5600 (2795MHz) CL38-44-44-86 tRC 126 1T 双通道"
       ],
       [
         "显卡",
@@ -131,19 +131,19 @@ const DEVICES = [
       [
         "存储阵列 (4盘 · 4TB)",
         [
-          "Fanxiang 梵想 S790E 1TB M.2 2280 PCIe 4.0 x4 NVMe · 联芸 MAP1602 DRAM-less + 长江存储 · 标称读 7100 / 写 6100（B450M-HDV 的 M.2 为 PCIe 3.0 x4，本机降速至约 3500MB/s）· 拆自已售的神舟 ZX6-CU5DA",
-          "幻隐 HS2000 1TB 2.5\" SATA 6Gb/s · 标称读 520MB/s / 写 470MB/s · 3D TLC",
-          "ORICO Y20 1TB 2.5\" SATA 6Gb/s · 100×70×7mm · 标称读 500MB/s / 写 480MB/s · 300TBW",
-          "WDC WD10EZEX-08WN4A0 1TB 3.5\" SATA 6Gb/s 7200RPM 64MB CMR"
+          "Fanxiang 梵想 S790E 1TB M.2 2280 PCIe 4.0 x4 NVMe · 联芸 MAP1602 DRAM-less + 长江存储 · 标称读 7100 / 写 6100 · 固件 H240314a · 换 B650M 后恢复 PCIe 4.0 x4 满速 · 系统盘 · 健康 96% · 通电 7770h · SN FXS790E242430390 · 拆自已售的神舟 ZX6-CU5DA",
+          "幻隐 HS2000 1TB 2.5\" SATA 6Gb/s（CrystalDiskInfo 显示 HYS1TB）· 标称读 520MB/s / 写 470MB/s · 3D TLC · 固件 X0515A0 · 健康 100% · 通电 7324h · SN 2024090600123",
+          "ORICO Y20 1TB 2.5\" SATA 6Gb/s · 100×70×7mm · 标称读 500MB/s / 写 480MB/s · 300TBW · 固件 HT5310B3 · 健康 100% · 通电 800h · SN 9260106002059",
+          "WD Green SN3000 1TB M.2 2280 PCIe 4.0 x4 NVMe · QLC 3D NAND · 标称读 5000 / 写 4200 · 150TBW · 固件 131020RL · SN 25513N804695 · 2026.10 换下 WD10EZEX"
         ]
       ],
       [
         "电源",
-        "Great Wall (长城) 猎金 F8 850W 80 PLUS Platinum Full Modular Power Supply (全日系105℃电容, LLC+DC-DC, ATX 3.1 / PCIe 5.1)"
+        "Huntkey (航嘉) JUMPER 750 (750W 80 PLUS Bronze Power Supply, 双管正激 + DC-DC 架构) · 2026.10 与 NODE-02 对调换入"
       ]
     ],
-    "footL": "丐板上的绝技：3866MHz FCLK 1933 极限低延迟",
-    "footR": "PCIe 3.0 性能损耗 < 2%",
+    "footL": "96MB 3D V-Cache 游戏缓存",
+    "footR": "显卡与系统盘 PCIe 4.0 满速",
     "storageGB": 4000,
     "vramGB": 12
   },
@@ -157,7 +157,7 @@ const DEVICES = [
     "flag": "Ollama / ComfyUI 专用",
     "title": "Intel® Core™ i5-13400TEF + GALAXY 影驰 RTX™ 2060 12GB",
     "sub": "35W 特挑低压工控/SI 定制 U 解锁 PL1/PL2 全核 3.9GHz + 12GB 大显存平民 AI 生产力",
-    "tags": "13400tef 2060 12g 影驰 galax b660m 日常机 ai大模型 tu106 ollama comfyui raptorlake snv3s1000g rbusns8180s3512gj ps3111 s11 bics3 tlc sbfk61e1 maxsun x5 wd5000aakx-001ca0",
+    "tags": "13400tef 2060 12g 影驰 galax b660m 日常机 ai大模型 tu106 ollama comfyui raptorlake snv3s1000g rbusns8180s3512gj ps3111 s11 bics3 tlc sbfk61d1 maxsun x5 铨兴 酷芯客 p300 map1202 光威 gloway vgm4uh36c18ag 4000 长城 猎金 f8 850w",
     "specs": [
       [
         "CPU",
@@ -169,29 +169,29 @@ const DEVICES = [
       ],
       [
         "内存",
-        "Teclast (台电) 32GB (16GB × 2) DDR4 2666MHz（手工超频至 DDR4 3200MHz CL18-20-20-40 1.35V）"
+        "Gloway (光威) 32GB (16GB × 2) DDR4 3600MHz CL18 · VGM4UH36C18AG-DTACWN（2026.10 与 NODE-01 对调换入，B660 上运行 DDR4 4000MHz）"
       ],
       [
         "显卡",
         "GALAXY 影驰 GeForce RTX™ 2060 12GB 骁将MAX Pro (双 90mm 星将散热, TU106-300, 2176 CUDA, 272 Tensor Gen2, 34 RT Gen1, 12GB GDDR6 192-bit 14Gbps, 336GB/s, Boost 1650MHz)"
       ],
       [
-        "存储阵列 (4盘 · 2.49TB)",
+        "存储阵列 (4盘 · 2.5TB)",
         [
-          "Kingston NV3 SNV3S1000G 1TB M.2 2280 PCIe 4.0 x4 NVMe · DRAM-less HMB · 3D QLC · 标称读 6000 / 写 4000 · 320TBW · SN 50026B7283975A9D",
-          "Kingston RBUSNS8180S3512GJ 512GB M.2 2280 SATA 6Gb/s · 群联 PS3111-S11 (2通道) 主控 + 东芝 64层 BiCS3 3D TLC (16 Die × 256Gb) · 固件 SBFK61E1 (2019.05) · 平均擦写 204 / 2000 次 · 标称读 550 / 写 510MB/s · SN 50026B76834F5F96 · 拆自已售的神舟 ZX6-CU5DA",
+          "Kingston NV3 SNV3S1000G 1TB M.2 2280 PCIe 4.0 x4 NVMe · DRAM-less HMB · 3D QLC · 标称读 6000 / 写 4000 · 320TBW · 固件 P3HR5B32 · CPU 直连 PCIe 4.0 x4 · SN 50026B7283975A9D",
+          "Kingston RBUSNS8180S3512GJ 512GB M.2 2280 SATA 6Gb/s · 群联 PS3111-S11 (2通道) 主控 + 东芝 64层 BiCS3 3D TLC (16 Die × 256Gb) · 固件 SBFK61D1 · 平均擦写 204 / 2000 次 · 标称读 550 / 写 510MB/s · SN 50026B76834F5F96 · 拆自已售的神舟 ZX6-CU5DA",
           "MAXSUN 铭瑄 终结者 X5 480GB 2.5\" SATA 6Gb/s · 512MB 缓存 · 标称读 550 / 写 480 · 100×69.8×6.9mm · SN MX106A3B60000000008",
-          "WDC WD5000AAKX-001CA0 WD Blue 500GB 3.5\" SATA 6Gb/s 7200RPM 16MB CMR · 标称持续约 126MB/s · 147×101.6×26.1mm · SN WD-WCAYUR467642"
+          "铨兴 酷芯客 P300 512GB M.2 2280 NVMe · 联芸 MAP1202 DRAM-less 主控 · 标称读约 2800MB/s · 固件 SN24737 · 走 B660 芯片组 PCIe 3.0 x4 · 拆自已售的攀升 暴风龙 S2，2026.10 换下 WD5000AAKX"
         ]
       ],
       [
         "电源",
-        "Huntkey (航嘉) JUMPER 750 (750W 80 PLUS Bronze Power Supply, 双管正激 + DC-DC 架构)"
+        "Great Wall (长城) 猎金 F8 850W 80 PLUS Platinum Full Modular Power Supply (全日系105℃电容, LLC+DC-DC, ATX 3.1 / PCIe 5.1) · 2026.10 与 NODE-01 对调换入"
       ]
     ],
     "footL": "12GB VRAM 完美承载 LLaMA-3 8B / Qwen 2.5",
     "footR": "颗粒归仓级多盘挂载",
-    "storageGB": 2492,
+    "storageGB": 2504,
     "vramGB": 12
   },
   {
@@ -484,7 +484,7 @@ const DEVICES = [
       ],
       [
         "RAM/ROM",
-        "16GB (8GB × 2) DDR4-2666 攀升 OEM 海力士颗粒 + 铨兴 酷芯客 P300 512GB M.2 2280 NVMe PCIe 3.0 · 读 2800MB/s（出售时 P300 固态拆下留用，未随机卖出，现闲置在仓储）"
+        "16GB (8GB × 2) DDR4-2666 攀升 OEM 海力士颗粒 + 铨兴 酷芯客 P300 512GB M.2 2280 NVMe PCIe 3.0 · 读 2800MB/s（出售时 P300 固态拆下留用，未随机卖出，2026.10 装进 NODE-02）"
       ],
       [
         "屏幕",
@@ -1670,37 +1670,6 @@ const DEVICES = [
     "footR": "借出"
   },
   {
-    "id": "quanxing-p300-512gb",
-    "tab": "spares",
-    "status": "vault",
-    "group": "存储备件",
-    "badge": "M.2 NVMe 拆机盘 / 闲置",
-    "flag": "攀升 S2 拆下",
-    "title": "铨兴 酷芯客 P300 512GB M.2 2280 NVMe SSD",
-    "sub": "攀升 暴风龙 S2 的原装固态，出售笔记本时拆下留用，未随机卖出，目前闲置",
-    "tags": "铨兴 酷芯客 p300 512g nvme pcie 3.0 ssd 2280 固态 闲置 拆机 攀升 暴风龙 s2 仓库",
-    "specs": [
-      [
-        "规格",
-        "铨兴 酷芯客 P300 · M.2 2280 · NVMe PCIe 3.0"
-      ],
-      [
-        "性能",
-        "顺序读约 2800MB/s"
-      ],
-      [
-        "容量",
-        "512GB"
-      ],
-      [
-        "来源",
-        "拆自已售出的 攀升 暴风龙 S2 (Ryzen 5 5600U)，笔记本出手时单独留下"
-      ]
-    ],
-    "footL": "PCIe 3.0 NVMe 备用盘",
-    "footR": "闲置"
-  },
-  {
     "id": "hp-s700-500gb",
     "tab": "spares",
     "status": "vault",
@@ -1767,11 +1736,11 @@ const DEVICES = [
     "tab": "spares",
     "status": "vault",
     "group": "存储备件",
-    "badge": "3.5 寸蓝盘 / 下机",
-    "flag": "柜子上",
-    "title": "WD5000AAKX · WD Blue 500GB 3.5\"",
-    "sub": "从主机取下，现搁柜子上",
-    "tags": "wd5000aakx wd blue 500g 3.5 hdd 蓝盘 7200 16mb 柜子 下机",
+    "badge": "3.5 寸蓝盘 / 下机 ×2",
+    "flag": "柜子上 ×2",
+    "title": "WD5000AAKX · WD Blue 500GB 3.5\" ×2",
+    "sub": "两块同型号蓝盘：一块早先从主机取下，另一块 2026.10 从 NODE-02 换下（被铨兴 P300 替代），都搁柜子上",
+    "tags": "wd5000aakx wd5000aakx-001ca0 wd blue 500g 3.5 hdd 蓝盘 7200 16mb 柜子 下机 node-02 wd-wcayur467642",
     "specs": [
       [
         "型号",
@@ -1787,15 +1756,42 @@ const DEVICES = [
       ],
       [
         "容量",
-        "500GB"
+        "500GB × 2"
       ],
       [
         "状态",
-        "已下机，放在柜子上"
+        "均已下机，放在柜子上 · 2026.10 下机的一块为 WD5000AAKX-001CA0，SN WD-WCAYUR467642"
       ]
     ],
-    "footL": "WD5000AAKX",
+    "footL": "WD5000AAKX ×2",
     "footR": "搁柜"
+  },
+  {
+    "id": "wd10ezex-wd-blue",
+    "tab": "spares",
+    "status": "vault",
+    "group": "存储备件",
+    "badge": "3.5 寸蓝盘 / 下机",
+    "flag": "NODE-01 换下",
+    "title": "WDC WD10EZEX-08WN4A0 · WD Blue 1TB 3.5\"",
+    "sub": "2026.10 主力机换 AM5 平台时，被 WD Green SN3000 1TB 替下，转入仓储",
+    "tags": "wd10ezex wd10ezex-08wn4a0 wd blue 1t 3.5 hdd 蓝盘 7200 64mb cmr node-01 下机 仓库",
+    "specs": [
+      [
+        "型号",
+        "WDC WD10EZEX-08WN4A0 · WD Blue · 1TB · 3.5\" · SATA 6Gb/s · 7200RPM · 64MB · CMR"
+      ],
+      [
+        "容量",
+        "1TB"
+      ],
+      [
+        "履历",
+        "原 NODE-01 存储阵列第四块盘，2026.10 换下进仓储"
+      ]
+    ],
+    "footL": "WD10EZEX 1TB",
+    "footR": "仓储"
   },
   {
     "id": "hgst-travelstar-z7k500",
@@ -2123,6 +2119,41 @@ const DEVICES = [
       ]
     ],
     "footL": "DDR3 四通道 X99",
+    "footR": "Sold Out"
+  },
+  {
+    "id": "am4-5700x-b450m-hdv",
+    "tab": "spares",
+    "status": "sold",
+    "group": "AM4 平台",
+    "badge": "原 NODE-01 板U内存",
+    "flag": "2026.10 1500元已售出",
+    "title": "AMD Ryzen™ 7 5700X + ASRock B450M-HDV R1.0 + 台电 32GB DDR4",
+    "sub": "原 NODE-01 主力平台，2026.10.29 板U内存打包 1500 元出手；4070 SUPER、硬盘与电源留用",
+    "tags": "5700x vermeer zen3 am4 b450m hdv 华擎 asrock 台电 teclast 32g ddr4 node-01 板u套装 1500 已售出",
+    "specs": [
+      [
+        "CPU",
+        "AMD Ryzen™ 7 5700X · Vermeer (Zen 3) · TSMC 7nm · 8C/16T · 3.4–4.6GHz · 32MB L3 · TDP 65W · AM4"
+      ],
+      [
+        "主板",
+        "ASRock (华擎) B450M-HDV R1.0 · AMD B450 · Micro-ATX · 4+2 相供电 · PCIe 3.0 x16 · 2020 年随 R5 2600 入手，先后搭配 R5 2600 → R5 5500 → R7 5700X"
+      ],
+      [
+        "内存",
+        "Teclast (台电) 32GB (16GB × 2) DDR4 2666MHz · 原装在 NODE-02（手工超至 3200 CL18），2026.10 与 NODE-01 的光威 3600C18 对调后随板U卖出"
+      ],
+      [
+        "成交",
+        "2026.10.29 · 板 + U + 内存打包 1500 元"
+      ],
+      [
+        "留用",
+        "ASUS Dual 雪豹 RTX 4070 SUPER EVO OC 12GB、梵想 S790E 1TB、幻隐 HS2000 1TB、ORICO Y20 1TB、航嘉 JUMPER 750（与 NODE-02 的长城 850W 对调而来）转入新的 AM5 NODE-01；WD10EZEX 1TB 下机进仓储"
+      ]
+    ],
+    "footL": "AM4 主力平台功成身退",
     "footR": "Sold Out"
   },
   {
@@ -2577,8 +2608,19 @@ const DEVICES = [
 
 const HISTORY = [
   {
+    "color": "amber",
+    "period": "[Period 9] 2026.10 - 至今 (AM5 换代 · 主力平台升级)",
+    "tag": "AM4 → AM5 · 9800X3D",
+    "title": "主力机告别 AM4 换上 9800X3D，两台台式机对调内存与电源",
+    "body": [
+      "台式机调换 (2026.10)：两台台式机对调内存与电源，NODE-02 换上光威 32GB 3600C18（运行 DDR4 4000）与长城 850W 铂金电源，台电 32GB 与航嘉 750W 换到 NODE-01；NODE-02 的 WD5000AAKX-001CA0 换成闲置的铨兴 P300 512G NVMe，蓝盘下机进仓储。",
+      "AM4 平台出手：NODE-01 的 R7 5700X + 华擎 B450M-HDV R1.0 + 台电 32GB DDR4 打包 1500 元卖出，从 2020 年 R5 2600 起用的 B450M 主板就此退役；4070 SUPER、硬盘与航嘉 750W 留用。",
+      "主力机换 AM5：AMD Ryzen™ 7 9800X3D (Zen 5, 8C/16T, 96MB 3D V-Cache) + 影驰 B650M Wi-Fi 黑武士 PLUS V2 + 金邦 32GB (16G×2) DDR5-4800 美光颗粒（运行 DDR5-5600 CL38）+ ASUS Dual 雪豹 RTX 4070 SUPER EVO OC 12GB + 梵想 S790E 1T（恢复 PCIe 4.0 满速）+ 幻隐 HS2000 1T + ORICO Y20 1T + 新增 WD Green SN3000 1T + 航嘉 750W；WD10EZEX 机械盘下机进仓储。"
+    ]
+  },
+  {
     "color": "cyan",
-    "period": "[Period 8] 2026.03 - 至今 (现役巅峰双主力与精细化调校)",
+    "period": "[Period 8] 2026.03 - 2026.10 (现役巅峰双主力与精细化调校)",
     "tag": "Dual Flagship + N100 Max",
     "title": "主力 FCLK 榨干、二奶机转入 13 代低功耗大显存平台、笔记本矩阵重组",
     "body": [
@@ -2587,7 +2629,7 @@ const HISTORY = [
       "边缘服务中枢：中柏 N100 双网口迷你主机，32GB DDR4 2666 单条 + Toshiba THNSN5128GPU7 128G NVMe + 梵想 S100 Pro 500GB，现运行飞牛OS (fnOS)，常驻 QQ 机器人 (ASTRBOT/NAPCAT) 与 AdGuard Home 广告过滤。",
       "移动端重大换代：以 799 元出掉 DELL Latitude 7410 2-in-1；以 950 元购入 攀升 暴风龙 S2 (Ryzen 5 5600U + 16G + 512G + 2.5K屏, 1.3kg)，仅补 151 元实现 CPU 算力翻倍；购入 Acer Chromebook Spin 13 (i7-8650U + 16GB LPDDR3 1866 + 3:2 2K QHD 触控屏 + Wacom) 刷好 Win10 作为独立阅读与办公副机。",
       "同款双机成型：以 990 元再入一台完全同款的 HP Elite Dragonfly 13.5 (i5-1245U + 16GB + 原厂 256GB)，与主力 MOBILE-01 出厂配置完全一致（一号机后自行换装 512G 致态），互为备份与轮换。",
-      "笔记本矩阵收缩：同款二号 HP Dragonfly (256G 原盘) 与 攀升 暴风龙 S2 先后出手（S2 的铨兴 P300 512G 固态拆下留用，现闲置），Acer Spin 13 留在家里给爸爸用，随身只留主力 Dragonfly 一台；T7 中继随之闲置。",
+      "笔记本矩阵收缩：同款二号 HP Dragonfly (256G 原盘) 与 攀升 暴风龙 S2 先后出手（S2 的铨兴 P300 512G 固态拆下留用，2026.10 装进 NODE-02），Acer Spin 13 留在家里给爸爸用，随身只留主力 Dragonfly 一台；T7 中继随之闲置。",
       "标压大屏补位 (2026.10)：购入 玄派 玄智星墨影 16.1 寸 (AMD Ryzen 7 7840H 54W + Radeon 780M + 海力士 32GB LPDDR5-6400 + SSSTC CL5-8D1024 1TB PCIe 4.0 + 2.5K 165Hz)，编为 MOBILE-02，与 13.5 寸 Dragonfly 形成「大屏性能 + 轻薄便携」双笔电组合。",
       "手机换代：升级为 OPPO Find X9 Pro 5G (16+512)，原主力 nubia Z60S Pro (16+512) 转入备用摄影收藏。"
     ]
@@ -2743,7 +2785,7 @@ const TOPO_SEED = {
       "gig": true,
       "accent": "violet",
       "title": "主力机",
-      "sub": "5700X + 4070S",
+      "sub": "9800X3D + 4070S",
       "note": "2K/4K 电竞与渲染"
     },
     {
