@@ -157,7 +157,7 @@ const DEVICES = [
     "flag": "Ollama / ComfyUI 专用",
     "title": "Intel® Core™ i5-13400TEF + GALAXY 影驰 RTX™ 2060 12GB",
     "sub": "35W 特挑低压工控/SI 定制 U 解锁 PL1/PL2 全核 3.9GHz + 12GB 大显存平民 AI 生产力",
-    "tags": "13400tef 2060 12g 影驰 galax b660m 日常机 ai大模型 tu106 ollama comfyui raptorlake snv3s1000g rbusns8180s3512gj ps3111 s11 bics3 tlc sbfk61d1 maxsun x5 铨兴 酷芯客 p300 map1202 光威 gloway vgm4uh36c18ag 4000 长城 猎金 f8 850w",
+    "tags": "13400tef 2060 12g 影驰 galax b660m 日常机 ai大模型 tu106 ollama comfyui raptorlake snv3s1000g rbusns8180s3512gj ps3111 s11 bics3 tlc sbfk61d1 maxsun x5 铨兴 酷芯客 p300 map1202 光威 gloway vgm4uh36c18ag 3600 c16 长城 猎金 f8 850w",
     "specs": [
       [
         "CPU",
@@ -169,7 +169,7 @@ const DEVICES = [
       ],
       [
         "内存",
-        "Gloway (光威) 32GB (16GB × 2) DDR4 3600MHz CL18 · VGM4UH36C18AG-DTACWN（2026.10 与 NODE-01 对调换入，B660 上运行 DDR4 4000MHz）"
+        "Gloway (光威) 32GB (16GB × 2) DDR4 3600MHz CL18 · VGM4UH36C18AG-DTACWN（2026.10 与 NODE-01 对调换入）→ 手工收紧时序至 DDR4 3600MHz CL16-18-18-36"
       ],
       [
         "显卡",
@@ -2613,7 +2613,7 @@ const HISTORY = [
     "tag": "AM4 → AM5 · 9800X3D",
     "title": "主力机告别 AM4 换上 9800X3D，两台台式机对调内存与电源",
     "body": [
-      "台式机调换 (2026.10)：两台台式机对调内存与电源，NODE-02 换上光威 32GB 3600C18（运行 DDR4 4000）与长城 850W 铂金电源，台电 32GB 与航嘉 750W 换到 NODE-01；NODE-02 的 WD5000AAKX-001CA0 换成闲置的铨兴 P300 512G NVMe，蓝盘下机进仓储。",
+      "台式机调换 (2026.10)：两台台式机对调内存与电源，NODE-02 换上光威 32GB 3600C18（收紧至 DDR4 3600 CL16-18-18-36）与长城 850W 铂金电源，台电 32GB 与航嘉 750W 换到 NODE-01；NODE-02 的 WD5000AAKX-001CA0 换成闲置的铨兴 P300 512G NVMe，蓝盘下机进仓储。",
       "AM4 平台出手：NODE-01 的 R7 5700X + 华擎 B450M-HDV R1.0 + 台电 32GB DDR4 打包 1500 元卖出，从 2020 年 R5 2600 起用的 B450M 主板就此退役；4070 SUPER、硬盘与航嘉 750W 留用。",
       "主力机换 AM5：AMD Ryzen™ 7 9800X3D (Zen 5, 8C/16T, 96MB 3D V-Cache) + 影驰 B650M Wi-Fi 黑武士 PLUS V2 + 金邦 32GB (16G×2) DDR5-4800 美光颗粒（运行 DDR5-5600 CL38）+ ASUS Dual 雪豹 RTX 4070 SUPER EVO OC 12GB + 梵想 S790E 1T（恢复 PCIe 4.0 满速）+ 幻隐 HS2000 1T + ORICO Y20 1T + 新增 WD Green SN3000 1T + 航嘉 750W；WD10EZEX 机械盘下机进仓储。"
     ]
