@@ -110,7 +110,7 @@ const DEVICES = [
     "flag": "2K/4K 满血光追",
     "title": "AMD Ryzen™ 7 9800X3D + ASUS Dual 雪豹 RTX™ 4070 SUPER EVO OC 12GB",
     "sub": "影驰 B650M Wi-Fi 黑武士 PLUS V2 · AM5 平台 · 96MB 3D V-Cache · DDR5-5600 双通道",
-    "tags": "9800x3d granite ridge zen5 am5 3d v-cache x3d 4070s 4070 super evo oc dual-rtx4070s-o12g-evo 雪豹 ad104 影驰 galax galaxy union b650m wi-fi plus v2 黑武士 金邦 geil ddr5 4800 5600 美光 micron rtl8851be wifi6 s790e 幻隐 hs2000 hys1tb orico y20 wd green sn3000 航嘉 jumper 750",
+    "tags": "9800x3d granite ridge zen5 am5 3d v-cache x3d 4070s 4070 super evo oc dual-rtx4070s-o12g-evo 雪豹 ad104 影驰 galax galaxy union b650m wi-fi plus v2 黑武士 金邦 geil ddr5 4800 5600 美光 micron rtl8851be wifi6 s790e 幻隐 hs2000 hys1tb orico y20 wd green sn3000 长城 华夏汉 华夏·汉 850w atx3.1 pcie5.1",
     "specs": [
       [
         "CPU",
@@ -139,7 +139,7 @@ const DEVICES = [
       ],
       [
         "电源",
-        "Huntkey (航嘉) JUMPER 750 (750W 80 PLUS Bronze Power Supply, 双管正激 + DC-DC 架构) · 2026.10 与 NODE-02 对调换入"
+        "Great Wall (长城) 华夏·汉 850W Full Modular Power Supply (CQC Ⅲ级能效 92%+, ATX 3.1 / 原生 PCIe 5.1, 自动启停风扇, 全电压) · 2026.10 新购"
       ]
     ],
     "footL": "96MB 3D V-Cache 游戏缓存",
@@ -1830,6 +1830,29 @@ const DEVICES = [
     "footR": "报废"
   },
   {
+    "id": "huntkey-jumper-750",
+    "tab": "spares",
+    "status": "sold",
+    "group": "电源",
+    "badge": "750W 铜牌电源",
+    "flag": "已出手",
+    "title": "Huntkey (航嘉) JUMPER 750",
+    "sub": "原 NODE-02 电源，2026.10 与 NODE-01 对调；主力机换上长城华夏·汉 850W 后出手",
+    "tags": "航嘉 huntkey jumper 750 750w 铜牌 bronze 电源 psu node-01 node-02 已出手",
+    "specs": [
+      [
+        "规格",
+        "750W · 80 PLUS Bronze · 双管正激 + DC-DC 架构"
+      ],
+      [
+        "履历",
+        "NODE-02 电源 → 2026.10 与 NODE-01 的长城猎金 F8 对调 → NODE-01 换装新购的长城华夏·汉 850W 后出手"
+      ]
+    ],
+    "footL": "750W 铜牌",
+    "footR": "已出手"
+  },
+  {
     "id": "4gb-ddr3l-1600mhz-1-35v",
     "tab": "spares",
     "status": "vault",
@@ -2129,7 +2152,7 @@ const DEVICES = [
     "badge": "原 NODE-01 板U内存",
     "flag": "2026.10 1500元已售出",
     "title": "AMD Ryzen™ 7 5700X + ASRock B450M-HDV R1.0 + 台电 32GB DDR4",
-    "sub": "原 NODE-01 主力平台，2026.10.29 板U内存打包 1500 元出手；4070 SUPER、硬盘与电源留用",
+    "sub": "原 NODE-01 主力平台，2026.10.29 板U内存打包 1500 元出手；4070 SUPER 与硬盘留用",
     "tags": "5700x vermeer zen3 am4 b450m hdv 华擎 asrock 台电 teclast 32g ddr4 node-01 板u套装 1500 已售出",
     "specs": [
       [
@@ -2150,7 +2173,7 @@ const DEVICES = [
       ],
       [
         "留用",
-        "ASUS Dual 雪豹 RTX 4070 SUPER EVO OC 12GB、梵想 S790E 1TB、幻隐 HS2000 1TB、ORICO Y20 1TB、航嘉 JUMPER 750（与 NODE-02 的长城 850W 对调而来）转入新的 AM5 NODE-01；WD10EZEX 1TB 下机进仓储"
+        "ASUS Dual 雪豹 RTX 4070 SUPER EVO OC 12GB、梵想 S790E 1TB、幻隐 HS2000 1TB、ORICO Y20 1TB 转入新的 AM5 NODE-01；WD10EZEX 1TB 下机进仓储；航嘉 JUMPER 750（与 NODE-02 的长城猎金 F8 对调而来）在新平台换上长城华夏·汉 850W 后出手"
       ]
     ],
     "footL": "AM4 主力平台功成身退",
@@ -2614,8 +2637,8 @@ const HISTORY = [
     "title": "主力机告别 AM4 换上 9800X3D，两台台式机对调内存与电源",
     "body": [
       "台式机调换 (2026.10)：两台台式机对调内存与电源，NODE-02 换上光威 32GB 3600C18（收紧至 DDR4 3600 CL16-18-18-36）与长城 850W 铂金电源，台电 32GB 与航嘉 750W 换到 NODE-01；NODE-02 的 WD5000AAKX-001CA0 换成闲置的铨兴 P300 512G NVMe，蓝盘下机进仓储。",
-      "AM4 平台出手：NODE-01 的 R7 5700X + 华擎 B450M-HDV R1.0 + 台电 32GB DDR4 打包 1500 元卖出，从 2020 年 R5 2600 起用的 B450M 主板就此退役；4070 SUPER、硬盘与航嘉 750W 留用。",
-      "主力机换 AM5：AMD Ryzen™ 7 9800X3D (Zen 5, 8C/16T, 96MB 3D V-Cache) + 影驰 B650M Wi-Fi 黑武士 PLUS V2 + 金邦 32GB (16G×2) DDR5-4800 美光颗粒（运行 DDR5-5600 CL38）+ ASUS Dual 雪豹 RTX 4070 SUPER EVO OC 12GB + 梵想 S790E 1T（恢复 PCIe 4.0 满速）+ 幻隐 HS2000 1T + ORICO Y20 1T + 新增 WD Green SN3000 1T + 航嘉 750W；WD10EZEX 机械盘下机进仓储。"
+      "AM4 平台出手：NODE-01 的 R7 5700X + 华擎 B450M-HDV R1.0 + 台电 32GB DDR4 打包 1500 元卖出，从 2020 年 R5 2600 起用的 B450M 主板就此退役；4070 SUPER 与硬盘留用。",
+      "主力机换 AM5：AMD Ryzen™ 7 9800X3D (Zen 5, 8C/16T, 96MB 3D V-Cache) + 影驰 B650M Wi-Fi 黑武士 PLUS V2 + 金邦 32GB (16G×2) DDR5-4800 美光颗粒（运行 DDR5-5600 CL38）+ ASUS Dual 雪豹 RTX 4070 SUPER EVO OC 12GB + 梵想 S790E 1T（恢复 PCIe 4.0 满速）+ 幻隐 HS2000 1T + ORICO Y20 1T + 新增 WD Green SN3000 1T + 新购长城华夏·汉 850W 全模组电源；WD10EZEX 机械盘下机进仓储，航嘉 750W 出手。"
     ]
   },
   {
